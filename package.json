@@ -1,0 +1,29 @@
+{
+  "name": "chrisweb-utilities.js",
+  "version": "0.0.1",
+  "description": "chrisweb utilities",
+  "main": "build/chrisweb-utilities.min.js",
+  "scripts": {
+    "test": "grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrisweb/chrisweb-utilities.js.git"
+  },
+  "keywords": [
+    "chrisweb",
+    "utilities",
+    "console",
+    "javascript",
+    "nodejs"
+  ],
+  "author": "chrisweb",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chrisweb/chrisweb-utilities.js/issues"
+  },
+  "homepage": "https://github.com/chrisweb/chrisweb-utilities.js",
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  }
+}
