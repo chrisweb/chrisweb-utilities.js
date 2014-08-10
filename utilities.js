@@ -488,7 +488,7 @@
     if (typeof(module) === 'object' && typeof(module.exports) === 'object') {
         module.exports = utilities;
     } else if (typeof(define) === 'function' && define.amd) {
-        define('library.utilities', [], function() {
+        define('chrisweb.utilities', [], function() {
             return utilities;
         });
     }
