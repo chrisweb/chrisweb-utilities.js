@@ -1,0 +1,25 @@
+{
+  "name": "chrisweb-utilities.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/chrisweb/chrisweb-utilities.js",
+  "authors": [
+    "chris weber <chris963@gmail.com>"
+  ],
+  "description": "utilities library, colored console logging for browser and nodejs",
+  "main": "utilities.js",
+  "keywords": [
+    "utilities",
+    "color",
+    "console",
+    "nodejs",
+    "browser"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
