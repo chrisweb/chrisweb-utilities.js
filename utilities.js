@@ -19,7 +19,7 @@
 
     var utilities = {};
 
-    utilities.version = '0.0.3';
+    utilities.version = '0.0.4';
     
     var errorLogger;
     
@@ -31,9 +31,22 @@
     
     utilities.logVerbose = true;
     
-    utilities.htmlLog = function htmlLogFunction(logObjects, logObjectsLength, logFontColor, logBackgroundColor) {
+    /**
+     * 
+     * html log
+     * create a div an insert the messages in div
+     * can be usefull on mobile if no other console is available
+     * 
+     * @param {type} logObjects
+     * @param {type} logObjectsLength
+     * @param {type} logFontColor
+     * @param {type} logBackgroundColor
+     * @returns {undefined}
+     */
+    utilities.htmlLog = function (logObjects, logObjectsLength, logFontColor, logBackgroundColor) {
 
-        // TODO: fix: if logging start before domload some messages get lost
+        // TODO: fix: seems that if logging starts before "domload" some
+        // messages get lost
 
         if (document.getElementById('log') === null) {
             
@@ -67,6 +80,16 @@
             
     };
     
+    /**
+     * 
+     * file log
+     * nodejs logging to file
+     * 
+     * @param {type} logObjects
+     * @param {type} logObjectsLength
+     * @param {type} logFontColor
+     * @returns {undefined}
+     */
     utilities.fileLog = function fileLogFunction(logObjects, logObjectsLength, logFontColor) {
         
         var winston = require('winston');
@@ -88,7 +111,12 @@
         
     };
 
-    // utilities logger
+    /**
+     * 
+     * log messages
+     * 
+     * @returns {Boolean}
+     */
     utilities.log = function logFunction() {
 
         // is console defined, some older IEs don't have a console
@@ -178,6 +206,14 @@
 
     };
     
+    /**
+     * 
+     * get the client side (browser) colors
+     * 
+     * @param {type} logFontColor
+     * @param {type} logBackgroundColor
+     * @returns {_L16.getClientColors.Anonym$2}
+     */
     var getClientColors = function getClientColorsFunction(logFontColor, logBackgroundColor) {
         
         var colors = {};
@@ -238,6 +274,14 @@
         
     };
     
+    /**
+     * 
+     * get the colors for the backend (server) console
+     * 
+     * @param {type} logFontColor
+     * @param {type} logBackgroundColor
+     * @returns {_L16.getServerColors.Anonym$2}
+     */
     var getServerColors = function getServerColorsFunction(logFontColor, logBackgroundColor) {
         
         var backgroundColors = {};
@@ -309,6 +353,14 @@
         
     };
     
+    /**
+     * 
+     * handle log arguments
+     * extract the color infos from the arguments to log
+     * 
+     * @param {type} logArguments
+     * @returns {_L16.handleLogArguments.Anonym$2}
+     */
     var handleLogArguments = function handleLogArgumentsFunction(logArguments) {
         
         var logObjects = [];
@@ -350,92 +402,42 @@
         
     };
     
-    // TODO: use moment.js for this
+    /**
+     * 
+     * returns the timestamp of right now
+     * 
+     * @returns {Number}
+     */
     utilities.getTimestamp = function getTimestampFunction() {
     
         return new Date().getTime();
         
     };
 
-    // TODO: use moment.js for this
-    utilities.millisecondsToString = function millisecondsToStringFunction(timeInMilliseconds, translations) {
+    /**
+     * 
+     * extracts html elements and their content from strings
+     * 
+     * @param {type} text
+     * @param {type} selector
+     * @returns {unresolved}
+     */
+    utilities.removeElements = function removeElementsFunction(text, selector) {
 
-        if (typeof(translations) === 'undefined') {
-            
-            translations = {
-                hours: 'hours',
-                minutes: 'minutes',
-                seconds: 'seconds',
-                milliseconds: 'milliseconds'
-            };
-            
-        }
+        var wrapped = $('<div>' + text + '</div>');
 
-        var oneHourInMilliseconds = 60*60*1000;
-        var oneMinuteInMilliseconds = 60*1000;
-        var oneSecondInMilliseconds = 1000;
+        wrapped.find(selector).remove();
 
-        var seconds = 0;
-        var minutes = 0;
-        var hours = 0;
-        var milliseconds = 0;
-
-        var timeString = '';
-
-        if (timeInMilliseconds >= oneHourInMilliseconds) {
-
-            hours = Math.floor(timeInMilliseconds / oneHourInMilliseconds);
-
-            timeString += hours + ' ' + translations.hours + ' ';
-
-        }
-
-        if (hours > 0) {
-
-            timeInMilliseconds = timeInMilliseconds - hours * oneHourInMilliseconds;
-
-        }
-
-        if (timeInMilliseconds >= oneMinuteInMilliseconds) {
-
-            minutes = Math.floor(timeInMilliseconds / oneMinuteInMilliseconds);
-
-            timeString += minutes + ' ' + translations.minutes + ' ';
-
-        }
-
-        if (minutes > 0) {
-
-            timeInMilliseconds = timeInMilliseconds - minutes * oneMinuteInMilliseconds;
-
-        }
-
-        if (timeInMilliseconds >= oneSecondInMilliseconds) {
-
-            seconds = Math.floor(timeInMilliseconds / oneSecondInMilliseconds);
-
-            timeString += seconds + ' ' + translations.seconds + ' ';
-
-        }
-
-        if (seconds > 0) {
-
-            timeInMilliseconds = timeInMilliseconds - seconds * oneSecondInMilliseconds;
-
-        }
-
-        if (timeInMilliseconds !== 0) {
-
-            milliseconds = timeInMilliseconds;
-
-            timeString += milliseconds + ' ' + translations.milliseconds + ' ';
-
-        }
-
-        return timeString;
+        return wrapped.html();
 
     };
     
+    /**
+     * 
+     * returns a universally unique identifier
+     * 
+     * @returns {unresolved}
+     */
     utilities.generateUUID = function generateUUIDFunction() {
     
         // http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript
@@ -458,6 +460,16 @@
         
     };
     
+    /**
+     * 
+     * filters a string
+     * removes everything that is a not an alpha or numeric character, plus
+     * the characters if any got specified as second argument
+     * 
+     * @param {type} inputString
+     * @param {type} specialCharacters
+     * @returns {Boolean}
+     */
     utilities.filterAlphaNumericPlus = function filterAlphaNumericFunctionPlus(inputString, specialCharacters) {
         
         if (typeof(inputString) === 'string' && inputString.length > 0) {
