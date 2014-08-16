@@ -404,31 +404,43 @@
     
     /**
      * 
-     * returns the timestamp of right now
+     * returns the timestamp of right now for browser that dont support
+     * es5 Date.now
      * 
      * @returns {Number}
      */
     utilities.getTimestamp = function getTimestampFunction() {
-    
+        
         return new Date().getTime();
         
     };
 
     /**
      * 
-     * extracts html elements and their content from strings
+     * extracts html elements (and their content) from strings
      * 
      * @param {type} text
-     * @param {type} selector
+     * @param {type} removeTextBetweenTags
      * @returns {unresolved}
      */
-    utilities.removeElements = function removeElementsFunction(text, selector) {
+    utilities.removeElements = function removeElementsFunction(text, removeTextBetweenTags) {
+        
+        if (removeTextBetweenTags !== undefined && removeTextBetweenTags === false) {
+            
+            // replace single tags
+            text = text.replace(/<[^>]*>?/g, '');
+            
+        } else {
+            
+            // replace all tags and whats inside
+            text = text.replace(/<[^>]*>[^>]*<\/[^>]*>?/g, '');
 
-        var wrapped = $('<div>' + text + '</div>');
-
-        wrapped.find(selector).remove();
-
-        return wrapped.html();
+            // replace single tags
+            text = text.replace(/<[^>]*>?/g, '');
+            
+        }
+        
+        return text;
 
     };
     
@@ -493,6 +505,135 @@
         }
         
         return false;
+        
+    };
+    
+    /**
+     * 
+     * decode uri
+     * 
+     * @param {type} uri
+     * @returns {unresolved}
+     */
+    utilities.decodeUri = function decodeUriFunction(uri) {
+        
+        var additionToSpace = '/\+/g';  // replace addition symbol with a space
+        
+        return decodeURIComponent(uri.replace(additionToSpace, ' '));
+        
+    };
+    
+    /**
+     * 
+     * encode uri
+     * 
+     * @param {type} uri
+     * @returns {unresolved}
+     */
+    utilities.encodeUri = function (uri) {
+
+        return encodeURIComponent(uri);
+        
+    };
+    
+    /**
+     * 
+     * 
+     * 
+     * @param {type} array
+     * @param {type} removeMe
+     * @returns {undefined}
+     */
+    utilities.arrayRemove = function arrayRemove(array, removeMe) {
+        
+        var index = array.indexOf(removeMe);
+
+        if (index > -1) {
+            
+            array.splice(index, 1);
+            
+        }
+        
+    };
+    
+    /**
+     * 
+     * capitalise first letter of a string
+     * 
+     * @param {type} string
+     * @returns {unresolved}
+     */
+    utilities.capitaliseFirstLetter = function capitaliseFirstLetterFunction(string) {
+        
+        return string.charAt(0).toUpperCase() + string.slice(1);
+        
+    };
+    
+    /**
+     * 
+     * get url parameters
+     * 
+     * @param {type} query
+     * @returns {_L16.utilities@call;decodeUri|Boolean}
+     */
+    utilities.getUrlParameters = function getUrlParametersFunction(query) {
+        
+        if (query === undefined) {
+            
+            if (window !== undefined) {
+        
+                query  = window.location.search.substring(1);
+                
+            } else {
+                
+                throw 'you must provide a query to parse';
+                
+            }
+            
+        }
+
+        var search = /([^&=]+)=?([^&]*)/g;
+        var urlParams = {};
+        
+        var parameters = search.exec(query);
+
+        for (var i=0; i<= parameters.length; i++) {
+            
+            var parameter = parameters[i];
+
+            urlParams[decode(parameter[1])] = this.decodeUri(parameter[2]);
+            
+        }
+
+        return urlParams;
+        
+    };
+    
+    /**
+     * 
+     * does a string contain another string
+     * 
+     * @param {type} string
+     * @param {type} contains
+     * @returns {Boolean}
+     */
+    utilities.stringContains = function(string, contains) {
+        
+        if (typeof string !== 'string') {
+            
+            throw 'input is not a string';
+            
+        }
+        
+        if (string.indexOf(contains) > -1) {
+            
+            return true;
+            
+        } else {
+            
+            return false;
+            
+        }
         
     };
 
