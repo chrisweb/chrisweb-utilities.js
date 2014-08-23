@@ -370,7 +370,9 @@
         
         var argumentsLength = logArguments.length;
         
-        for (var i = 0; i < argumentsLength; i++) {
+        var i;
+        
+        for (i = 0; i < argumentsLength; i++) {
             
             var argument = logArguments[i];
             
@@ -457,8 +459,9 @@
         // http://www.ietf.org/rfc/rfc4122.txt
         var s = [];
         var hexDigits = "0123456789abcdef";
+        var i;
         
-        for (var i = 0; i < 36; i++) {
+        for (i = 0; i < 36; i++) {
             s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
         }
         
@@ -594,10 +597,10 @@
 
         var search = /([^&=]+)=?([^&]*)/g;
         var urlParams = {};
-        
         var parameters = search.exec(query);
+        var i;
 
-        for (var i=0; i<= parameters.length; i++) {
+        for (i=0; i<= parameters.length; i++) {
             
             var parameter = parameters[i];
 
