@@ -620,7 +620,7 @@
      * @param {type} contains
      * @returns {Boolean}
      */
-    utilities.stringContains = function(string, contains) {
+    utilities.stringContains = function stringContainsFunction(string, contains) {
         
         if (typeof string !== 'string') {
             
@@ -637,6 +637,37 @@
             return false;
             
         }
+        
+    };
+    
+    /**
+     * 
+     * get the index of a substring in a string with optional nth time it occurs
+     * 
+     * @param {type} string
+     * @param {type} substring
+     * @param {type} nthTime
+     * @returns {unresolved}
+     */
+    utilities.getSubstringIndex = function getSubstringIndexFunction(string, substring, nthTime) {
+        
+        var times = 0;
+        var index = null;
+        
+        if (nthTime === 0) {
+            
+            nthTime = 1;
+            
+        }
+
+        while (times < nthTime && index !== -1) {
+            
+            index = string.indexOf(substring, index+1);
+            times++;
+            
+        }
+
+        return index;
         
     };
 
