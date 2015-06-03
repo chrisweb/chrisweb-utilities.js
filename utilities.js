@@ -92,19 +92,23 @@
      */
     utilities.fileLog = function fileLogFunction(logObjects, logObjectsLength, logFontColor) {
         
-        var winston = require('winston');
+        if (require.resolve('winston')) {
         
-        for (var i = 0; i < logObjectsLength; i++) {
+            var winston = require('winston');
             
-            switch(logFontColor) {
-                case 'red':
-                    winston.error(logObjects[i]);
-                    break;
-                case 'yellow':
-                    winston.warn(logObjects[i]);
-                    break;
-                default:
-                    winston.info(logObjects[i]);
+            for (var i = 0; i < logObjectsLength; i++) {
+                
+                switch(logFontColor) {
+                    case 'red':
+                        winston.error(logObjects[i]);
+                        break;
+                    case 'yellow':
+                        winston.warn(logObjects[i]);
+                        break;
+                    default:
+                        winston.info(logObjects[i]);
+                }
+                
             }
             
         }
