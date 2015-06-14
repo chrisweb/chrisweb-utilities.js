@@ -1,8 +1,8 @@
 {
-  "name": "chrisweb-utilities.js",
-  "version": "0.0.1",
+  "name": "chrisweb-utilities",
+  "version": "0.1.1",
   "description": "chrisweb utilities",
-  "main": "build/chrisweb-utilities.min.js",
+  "main": "utilities.js",
   "scripts": {
     "test": "grunt"
   },
