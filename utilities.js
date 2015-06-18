@@ -678,6 +678,18 @@
         return index;
         
     };
+    
+    utilities.isServer = function isServerFunction() {
+    	if (typeof(module) === 'object' && typeof(module.exports) === 'object') {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    };
+    
+    utilities.isClient = function isClientFunction() {
+    	return !this.isServer();
+    };
 
     // this module can be used in the browser as well as in nodejs
     if (typeof(module) === 'object' && typeof(module.exports) === 'object') {
