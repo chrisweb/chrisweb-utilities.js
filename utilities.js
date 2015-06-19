@@ -680,7 +680,7 @@
     };
     
     utilities.isServer = function isServerFunction() {
-    	if (typeof(module) === 'object' && typeof(module.exports) === 'object') {
+    	if (typeof(global) === 'object') {
     		return true;
     	} else {
     		return false;
