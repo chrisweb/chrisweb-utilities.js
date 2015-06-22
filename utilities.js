@@ -571,7 +571,7 @@
      * 
      * capitalise first letter of a string
      * 
-     * @param {type} string
+     * @param string string
      * @returns {unresolved}
      */
     utilities.capitaliseFirstLetter = function capitaliseFirstLetterFunction(string) {
@@ -584,7 +584,7 @@
      * 
      * get url parameters
      * 
-     * @param {type} query
+     * @param string query
      * @returns {_L16.utilities@call;decodeUri|Boolean}
      */
     utilities.getUrlParameters = function getUrlParametersFunction(query) {
@@ -679,6 +679,9 @@
         
     };
     
+	/**
+	 * does the script run on the server
+	 */
     utilities.isServer = function isServerFunction() {
     	if (typeof(global) === 'object') {
     		return true;
@@ -687,6 +690,9 @@
     	}
     };
     
+	/**
+	 * does the script run in a client
+	 */
     utilities.isClient = function isClientFunction() {
     	return !this.isServer();
     };
