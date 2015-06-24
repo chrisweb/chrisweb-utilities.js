@@ -111,6 +111,6 @@ declare module utilities {
 
 }
 
-declare module 'chrisweb-utilities' {
+declare module 'chrisweb.utilities' {
     export = utilities;
 }
