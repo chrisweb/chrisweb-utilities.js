@@ -698,12 +698,15 @@
     };
 
     // this module can be used in the browser as well as in nodejs
-    if (typeof(module) === 'object' && typeof(module.exports) === 'object') {
-        module.exports = utilities;
-    } else if (typeof(define) === 'function' && define.amd) {
-        define('chrisweb.utilities', [], function() {
-            return utilities;
-        });
-    }
+    (function (deps, factory) {
+	if (typeof module === 'object' && typeof module.exports === 'object') {
+		var v = factory(require, exports); if (v !== undefined) module.exports = v;
+	}
+	else if (typeof define === 'function' && define.amd) {
+		define(deps, factory);
+	}
+    })(["require", "exports"], function (require, exports) {
+	return utilities;
+    });
 
 })();
