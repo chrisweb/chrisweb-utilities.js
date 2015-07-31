@@ -388,11 +388,11 @@
                 
                 if (argument.substr(0, 10) === 'fontColor:') {
                     
-                    logFontColor = argument.substr(10, argument.length);
+                    logFontColor = argument.substr(10, argument.length).trim();
                     
                 } else if (argument.substr(0, 16) === 'backgroundColor:') {
                     
-                    logBackgroundColor = argument.substr(16, argument.length);
+                    logBackgroundColor = argument.substr(16, argument.length).trim();
                     
                 } else {
                     
