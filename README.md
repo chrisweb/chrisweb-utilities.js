@@ -28,7 +28,7 @@ Colored console log messages for the browser and or nodejs (iojs)
 * cyan
 * white
 * black
-<br>
+<br><br>
 **logging in floating html div (client)**
 If you are on mobile device and wan't to show the messages in a floating div over the page then set logSpecial to true
 ```
@@ -52,7 +52,8 @@ extracts html elements (and their content) from strings
 returns a universally unique identifier
 ### filterAlphaNumericPlus
 filters a string
-* removes everything that is a not an alpha or numeric character and also optionally the characters that got specified as second argument
+<br>
+removes everything that is a not an alpha or numeric character and also optionally the characters that got specified as second argument
 ### decodeUri
 decode uri
 ### encodeUri
