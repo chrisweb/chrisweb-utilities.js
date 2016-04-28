@@ -26,3 +26,16 @@ node_modules
 
 # netbeans
 /nbproject
+
+# visual studio
+.vs
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+*.sap

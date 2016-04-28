@@ -25,7 +25,7 @@ declare module utilities {
     /**
      * log messages
      */
-    function log(...args:Array<any>): void;
+    function log(...args: Array<any>): void;
 
     /**
      * get the client side (browser) colors
@@ -51,7 +51,12 @@ declare module utilities {
     /**
      * extracts html elements (and their content) from strings
      */
-    function removeElements(text: string, removeTextBetweenTags: boolean): string;
+    function removeElements(text: string, removeTextBetweenTags?: boolean): string;
+
+    /**
+     * unescapes a string and uses removeElements to ensure the string does not contain html elements
+     */
+    function safeUnescape(rawText: string, extendedEscape?: boolean, myEscapeList?: { [key: string]: string }): string;
 
     /**
      * returns a universally unique identifier
