@@ -1,11 +1,12 @@
-chrisweb utilities.js 0.1.2
+chrisweb utilities.js 0.1.3
 ===========================
 
-Javascript utilities for small tasks. Testing are fixes and comments are welcome.
+Javascript utilities belt for very specific tasks. Testing, fixes and comments are welcome.
 
 main goal(s):
-* DONE: should workin the browser as well in nodejs
-* DONE: console log wrapper for colored log messages
+* console log wrapper for colored log messages
+* utilities belt: javascript collection of useful functions that are useful for specific situations, so a lot more specific than underscore
+* should work in the browser as well in nodejs
 
 sub goal(s):
 * create UMD build using grunt
