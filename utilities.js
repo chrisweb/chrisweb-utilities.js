@@ -787,8 +787,27 @@
 	/**
 	 * does the script run in a client
 	 */
+    utilities.replacePlaceholders = function replacePlaceholdersFunction(input, replacements) {
+
+        var output = input;
+
+        if (typeof input === 'string' && typeof replacements === 'object') {
+
+            output = input.replace(/\b\w+?\b/g, function replacePlaceHolder(placeholder) {
+                return Object.prototype.hasOwnProperty.call(replacements, placeholder) ? replacements[placeholder] : placeholder;
+            });
+
+        }
+
+        return output;
+
+    };
+
+    /**
+     * replace the placeholder(s) with some value
+     */
     utilities.isClient = function isClientFunction() {
-    	return !this.isServer();
+        return !this.isServer();
     };
 
     // this module can be used in the browser as well as in nodejs

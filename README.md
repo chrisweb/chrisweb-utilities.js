@@ -1,4 +1,4 @@
-chrisweb utilities.js 0.1.3
+chrisweb utilities.js 0.1.4
 ===========================
 
 Javascript utilities belt for very specific tasks. Testing, fixes and comments are welcome.
@@ -73,3 +73,5 @@ get the index of a substring in a string with optional nth time it occurs
 does the script run on the server
 ### isClient
 does the script run in a client
+### replace placholder
+first parameter is a string and second parameter an object where the keys are the placeholder that need to get replaced and the value is the replacement (replacement can be a string or number)
