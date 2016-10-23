@@ -141,13 +141,9 @@
                 for (var i = 0; i < logObjectsLength; i++) {
                     
                     if (typeof (logObjects[i]) === 'string') {
-                        
                         console.log(color.background + color.font + logObjects[i] + color.reset);
-                        
                     } else {
-                        
                         console.log(logObjects[i]);
-                        
                     }
 
                 };
@@ -174,13 +170,9 @@
                 for (var i = 0; i < logObjectsLength; i++) {
 
                     if (typeof (logObjects[i]) === 'string') {
-
                         console.log('%c' + logObjects[i], 'background: #' + color.background + '; color: #' + color.font);
-                        
                     } else {
-                        
                         console.log(logObjects[i]);
-                        
                     }
 
                 };
@@ -232,13 +224,9 @@
         } else {
             
             if (typeof (colors[logFontColor]) !== 'undefined') {
-            
                 fontColor = colors[logFontColor];
-                
             } else {
-                
                 throw 'unknown fontColor in utilities console log';
-                
             }
             
         }
@@ -252,13 +240,9 @@
         } else {
             
             if (typeof (colors[logBackgroundColor]) !== 'undefined') {
-            
                 backgroundColor = colors[logBackgroundColor];
-                
             } else {
-                
                 throw 'unknown fontColor in utilities console log';
-                
             }
             
         }
@@ -311,13 +295,9 @@
         } else {
             
             if (typeof (foregroundColors[logFontColor]) !== 'undefined') {
-            
                 fontColor = foregroundColors[logFontColor];
-                
             } else {
-                
                 throw 'unknown font color in utilities console log';
-                
             }
             
         }
@@ -331,13 +311,9 @@
         } else {
             
             if (typeof (backgroundColors[logBackgroundColor]) !== 'undefined') {
-            
                 backgroundColor = backgroundColors[logBackgroundColor];
-                
             } else {
-                
                 throw 'unknown background color in utilities console log';
-                
             }
             
         }
@@ -372,23 +348,15 @@
             if (typeof (argument) === 'string') {
                 
                 if (argument.substr(0, 10) === 'fontColor:') {
-                    
                     logFontColor = argument.substr(10, argument.length).trim();
-                    
                 } else if (argument.substr(0, 16) === 'backgroundColor:') {
-                    
                     logBackgroundColor = argument.substr(16, argument.length).trim();
-                    
                 } else {
-                    
                     logObjects.push(argument);
-                    
                 }
                 
             } else {
-                    
                 logObjects.push(argument);
-                    
             }
             
         }
@@ -420,7 +388,7 @@
      */
     utilities.removeElements = function removeElementsFunction(text, removeTextBetweenTags) {
         
-        if (removeTextBetweenTags !== undefined && removeTextBetweenTags === false) {
+        if (removeTextBetweenTags === false) {
             
             // replace single tags
             text = text.replace(/<[^>]*>?/g, '');
@@ -600,9 +568,7 @@
                 outputString = inputString.replace(regex, '');
                 
             } else {
-            
                 outputString = inputString.replace(/[^a-z0-9]/gi, '');
-                
             }
             
             return outputString;
@@ -654,9 +620,7 @@
         var index = array.indexOf(removeMe);
 
         if (index > -1) {
-            
             array.splice(index, 1);
-            
         }
         
     };
@@ -686,13 +650,9 @@
         if (query === undefined) {
             
             if (window !== undefined) {
-        
                 query = window.location.search.substring(1);
-                
             } else {
-                
                 throw 'you must provide a query to parse';
-                
             }
             
         }
@@ -725,19 +685,13 @@
     utilities.stringContains = function stringContainsFunction(string, contains) {
         
         if (typeof string !== 'string') {
-            
             throw 'input is not a string';
-            
         }
         
         if (string.indexOf(contains) > -1) {
-            
             return true;
-            
         } else {
-            
             return false;
-            
         }
         
     };
@@ -757,9 +711,7 @@
         var index = null;
         
         if (nthTime === 0) {
-            
             nthTime = 1;
-            
         }
 
         while (times < nthTime && index !== -1) {
@@ -777,11 +729,13 @@
 	 * does the script run on the server
 	 */
     utilities.isServer = function isServerFunction() {
+
         if (typeof (global) === 'object') {
     		return true;
     	} else {
     		return false;
-    	}
+        }
+
     };
     
 	/**
@@ -809,6 +763,47 @@
     utilities.isClient = function isClientFunction() {
         return !this.isServer();
     };
+
+    /**
+     * URL utility to get a parameter by name from an URL
+     */
+    utilities.getUrlParameterByName = function getUrlParameterByNameFunction(name, url) {
+
+        if (!url) {
+            url = window.location.href;
+        }
+
+        name = name.replace(/[\[\]]/g, "\\$&");
+
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+        var results = regex.exec(url);
+
+        if (!results) {
+            return null;
+        }
+
+        if (!results[2]) {
+            return '';
+        }
+
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+
+    }
+
+    /**
+     * URL utility to replace a given parameter
+     */
+    utilities.replaceUrlParameter = function replaceUrlParam(url, paramName, paramValue) {
+
+        var pattern = new RegExp('\\b(' + paramName + '=).*?(&|$)');
+
+        if (url.search(pattern) >= 0) {
+            return url.replace(pattern, '$1' + paramValue + '$2');
+        }
+
+        return url + (url.indexOf('?') > 0 ? '&' : '?') + paramName + '=' + paramValue;
+
+    }
 
     // this module can be used in the browser as well as in nodejs
     if (typeof (module) === 'object' && typeof (module.exports) === 'object') {

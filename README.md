@@ -1,4 +1,4 @@
-chrisweb utilities.js 0.1.4
+chrisweb utilities.js 0.1.5
 ===========================
 
 Javascript utilities belt for very specific tasks. Testing, fixes and comments are welcome.
@@ -48,7 +48,8 @@ utilities.logSpecial = true
 utilities.logVerbose = false
 ```
 ### removeElements
-extracts html elements (and their content) from strings
+removes html elements from a sting (and their content) from strings
+set second parameter "removeTextBetweenTags" to false to keep the text between the opening and closing html tag
 ### generateUUID
 returns a universally unique identifier
 ### filterAlphaNumericPlus
@@ -73,5 +74,6 @@ get the index of a substring in a string with optional nth time it occurs
 does the script run on the server
 ### isClient
 does the script run in a client
-### replace placholder
+### replace placholder(s)
 first parameter is a string and second parameter an object where the keys are the placeholder that need to get replaced and the value is the replacement (replacement can be a string or number)
+### remove the content between two "markers"
