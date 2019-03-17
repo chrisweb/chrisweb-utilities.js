@@ -7,26 +7,5 @@ import { filterAlphaNumericPlus, capitaliseFirstLetter, stringContains, getSubst
 import { generateUUID } from './utilities/uuid';
 import { removeElements } from './utilities/html';
 import { log } from './utilities/log';
-
-const version = '1.0.0';
-
-export {
-    version,
-    getTimestamp,
-    isServer,
-    isClient,
-    getUrlParameters,
-    getUrlParameterByName,
-    replaceUrlParameter,
-    decodeUri,
-    encodeUri,
-    arrayRemove,
-    filterAlphaNumericPlus,
-    capitaliseFirstLetter,
-    stringContains,
-    getSubstringIndex,
-    replacePlaceholders,
-    generateUUID,
-    removeElements,
-    log
-};
+declare const version = "1.0.0";
+export { version, getTimestamp, isServer, isClient, getUrlParameters, getUrlParameterByName, replaceUrlParameter, decodeUri, encodeUri, arrayRemove, filterAlphaNumericPlus, capitaliseFirstLetter, stringContains, getSubstringIndex, replacePlaceholders, generateUUID, removeElements, log };

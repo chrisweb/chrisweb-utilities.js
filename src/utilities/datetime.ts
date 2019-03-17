@@ -1,7 +1,7 @@
 /**
  * returns the timestamp for any date or for now(), also works with browsers that dont support es5 Date.now
  */
-export function getTimestamp(dateString: string|number = ''): number {
+const getTimestamp = (dateString: string|number = ''): number => {
 
     let timestamp: number;
 
@@ -14,4 +14,6 @@ export function getTimestamp(dateString: string|number = ''): number {
 
     return timestamp;
 
-}
+};
+
+export { getTimestamp };

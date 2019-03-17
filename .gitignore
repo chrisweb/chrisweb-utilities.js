@@ -39,3 +39,6 @@ node_modules
 *.vsp
 *.vspx
 *.sap
+
+# build cache
+.rpt2_cache
