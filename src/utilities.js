@@ -4,7 +4,7 @@
 
     var utilities = {};
 
-    utilities.version = '0.0.4';
+    utilities.version = '0.2.0';
     
     var errorLogger;
     
