@@ -24,14 +24,13 @@ const isArray = (input: any): boolean => {
     } else {
         return Array.isArray(input);
     }
-}
+};
 
 declare global  {
     interface Array<T> {
         includes(valueToFind: string, fromIndex?: number): boolean;
-    }  
+    }
 }
-
 
 const includes = (inputArray: [], valueToFind: string, fromIndex?: number): boolean => {
 
@@ -44,114 +43,114 @@ const includes = (inputArray: [], valueToFind: string, fromIndex?: number): bool
         if (this == null) {
             throw new TypeError('"this" is null or not defined');
         }
-  
-        // 1. Let O be ? ToObject(this value).
-        var o = Object(this);
-  
-        // 2. Let len be ? ToLength(? Get(O, "length")).
-        var len = o.length >>> 0;
-  
-        // 3. If len is 0, return false.
+
+        // 1. Let O be ? ToObject(this value)
+        let o = Object(this);
+
+        // 2. Let len be ? ToLength(? Get(O, "length"))
+        let len = o.length >>> 0;
+
+        // 3. If len is 0, return false
         if (len === 0) {
             return false;
         }
-  
-        // 4. Let n be ? ToInteger(fromIndex).
+
+        // 4. Let n be ? ToInteger(fromIndex)
         //    (If fromIndex is undefined, this step produces the value 0.)
-        var n = fromIndex | 0;
-  
+        let n = fromIndex | 0;
+
         // 5. If n ≥ 0, then
         //  a. Let k be n.
         // 6. Else n < 0,
         //  a. Let k be len + n.
         //  b. If k < 0, let k be 0.
-        var k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
-  
+        let k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+
         // 7. Repeat, while k < len
         while (k < len) {
-            // a. Let elementK be the result of ? Get(O, ! ToString(k)).
-            // b. If SameValueZero(valueToFind, elementK) is true, return true.
+            // a. Let elementK be the result of ? Get(O, ! ToString(k))
+            // b. If SameValueZero(valueToFind, elementK) is true, return true
             if (sameValueZero(o[k], valueToFind)) {
                 return true;
             }
-            // c. Increase k by 1. 
+            // c. Increase k by 1
             k++;
         }
-  
+
         // 8. Return false
         return false;
     } else {
-        var n = fromIndex | 0;
+        let n = fromIndex | 0;
         return inputArray.includes(valueToFind, n);
     }
-}
+};
 
 const sameValueZero = (x: any, y: any): boolean => {
     return x === y || (typeof x === 'number' && typeof y === 'number' && isNaN(x) && isNaN(y));
-}
+};
 
 
 const find = (inputArray: [], predicate: any, args: any): {} => {
 
     // MDN find documentation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
-    
+
     if (!Array.prototype.find) {
 
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
 
-        // 1. Let O be ? ToObject(this value).
+        // 1. Let O be ? ToObject(this value)
         if (this == null) {
             throw new TypeError('"this" is null or not defined');
         }
 
-        var o = Object(this);
+        let o = Object(this);
 
-        // 2. Let len be ? ToLength(? Get(O, "length")).
-        var len = o.length >>> 0;
+        // 2. Let len be ? ToLength(? Get(O, "length"))
+        let len = o.length >>> 0;
 
-        // 3. If IsCallable(predicate) is false, throw a TypeError exception.
+        // 3. If IsCallable(predicate) is false, throw a TypeError exception
         if (typeof predicate !== 'function') {
             throw new TypeError('predicate must be a function');
         }
 
-        // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
-        var thisArg = args[1];
+        // 4. If thisArg was supplied, let T be thisArg; else let T be undefined
+        let thisArg = args[1];
 
         // 5. Let k be 0.
-        var k = 0;
+        let k = 0;
 
         // 6. Repeat, while k < len
         while (k < len) {
-            // a. Let Pk be ! ToString(k).
-            // b. Let kValue be ? Get(O, Pk).
-            // c. Let testResult be ToBoolean(? Call(predicate, T, « kValue, k, O »)).
-            // d. If testResult is true, return kValue.
-            var kValue = o[k];
+            // a. Let Pk be ! ToString(k)
+            // b. Let kValue be ? Get(O, Pk)
+            // c. Let testResult be ToBoolean(? Call(predicate, T, « kValue, k, O »))
+            // d. If testResult is true, return kValue
+            let kValue = o[k];
             if (predicate.call(thisArg, kValue, k, o)) {
                 return kValue;
             }
-            // e. Increase k by 1.
+            // e. Increase k by 1
             k++;
         }
 
-        // 7. Return undefined.
+        // 7. Return undefined
         return undefined;
 
     } else {
         return inputArray.find(predicate, args);
     }
-}
+};
 
 declare global  {
     interface Array<T> {
         flat(depth: number): [];
-    }  
+    }
 }
 
 /**
- * 
+ *
  * array flat polyfill, if depth is unknow set it to "Infinity"
- * 
+ *
  */
 const flat = (inputArray: [], depth: any): [] => {
 
@@ -163,7 +162,7 @@ const flat = (inputArray: [], depth: any): [] => {
         return inputArray.flat(depth);
     }
 
-}
+};
 
 const flatten = (inputArray: [], depth: any): [] => {
 
@@ -171,7 +170,7 @@ const flatten = (inputArray: [], depth: any): [] => {
 
     for (let el of inputArray) {
         if (isArray(el) && depth > 0) {
-            flatten(el, depth - 1); 
+            flatten(el, depth - 1);
         } else {
             flattend.push(el);
         }
@@ -179,6 +178,6 @@ const flatten = (inputArray: [], depth: any): [] => {
 
     return flattend;
 
-}
+};
 
 export { remove, isArray, includes, find, flat };
