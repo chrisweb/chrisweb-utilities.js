@@ -3,7 +3,7 @@
  * decode uri
  *
  */
-const decodeUri = (inputString: string) => {
+const decodeUri = (inputString: string): string => {
 
     const plusRegularExpression = /\+/g;
 
@@ -17,7 +17,7 @@ const decodeUri = (inputString: string) => {
  * encode uri
  *
  */
-const encodeUri = (inputString: string) => {
+const encodeUri = (inputString: string): string => {
 
     const findRegularExpression = /[!'\(\)~]|%20|%00/g;
     const replaceList: any = {
@@ -27,10 +27,10 @@ const encodeUri = (inputString: string) => {
         ')': '%29',
         '~': '%7E',
         '%20': '+',
-        '%00': '\x00'
+        '%00': '+'
     };
 
-    return encodeURIComponent(inputString).replace(findRegularExpression, replaceList);
+    return encodeURIComponent(inputString).replace(findRegularExpression, (match) => { return replaceList[match]; });
 
 }
 

@@ -1,4 +1,4 @@
-import { decodeUri, encodeUri } from './uri';
+import { decodeUri } from './uri';
 
 /**
  *
