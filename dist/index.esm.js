@@ -270,13 +270,6 @@ var htmlLog = function (logObjects, logObjectsLength, logFontColor, logBackgroun
     }
 };
 
-/**
- *
- * file log
- * nodejs logging to file
- *
- */
-
 var defaultLogFontColor = 'default';
 var defaultLogBackgroundColor = 'default';
 /**
@@ -472,5 +465,5 @@ var handleLogArguments = function (logArguments) {
 
 var version = '1.0.0';
 
-export { version, getTimestamp, isServer, isClient, getUrlParameters, getUrlParameterByName, replaceUrlParameter, decodeUri, encodeUri, arrayRemove, filterAlphaNumericPlus, capitaliseFirstLetter, stringContains, getSubstringIndex, replacePlaceholders, generateUUID, removeElements, log };
+export { arrayRemove, capitaliseFirstLetter, decodeUri, encodeUri, filterAlphaNumericPlus, generateUUID, getSubstringIndex, getTimestamp, getUrlParameterByName, getUrlParameters, isClient, isServer, log, removeElements, replacePlaceholders, replaceUrlParameter, stringContains, version };
 //# sourceMappingURL=index.esm.js.map

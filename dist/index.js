@@ -276,13 +276,6 @@
         }
     };
 
-    /**
-     *
-     * file log
-     * nodejs logging to file
-     *
-     */
-
     var defaultLogFontColor = 'default';
     var defaultLogBackgroundColor = 'default';
     /**
@@ -478,24 +471,24 @@
 
     var version = '1.0.0';
 
-    exports.version = version;
-    exports.getTimestamp = getTimestamp;
-    exports.isServer = isServer;
-    exports.isClient = isClient;
-    exports.getUrlParameters = getUrlParameters;
-    exports.getUrlParameterByName = getUrlParameterByName;
-    exports.replaceUrlParameter = replaceUrlParameter;
+    exports.arrayRemove = arrayRemove;
+    exports.capitaliseFirstLetter = capitaliseFirstLetter;
     exports.decodeUri = decodeUri;
     exports.encodeUri = encodeUri;
-    exports.arrayRemove = arrayRemove;
     exports.filterAlphaNumericPlus = filterAlphaNumericPlus;
-    exports.capitaliseFirstLetter = capitaliseFirstLetter;
-    exports.stringContains = stringContains;
-    exports.getSubstringIndex = getSubstringIndex;
-    exports.replacePlaceholders = replacePlaceholders;
     exports.generateUUID = generateUUID;
-    exports.removeElements = removeElements;
+    exports.getSubstringIndex = getSubstringIndex;
+    exports.getTimestamp = getTimestamp;
+    exports.getUrlParameterByName = getUrlParameterByName;
+    exports.getUrlParameters = getUrlParameters;
+    exports.isClient = isClient;
+    exports.isServer = isServer;
     exports.log = log;
+    exports.removeElements = removeElements;
+    exports.replacePlaceholders = replacePlaceholders;
+    exports.replaceUrlParameter = replaceUrlParameter;
+    exports.stringContains = stringContains;
+    exports.version = version;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
