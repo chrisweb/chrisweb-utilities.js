@@ -3,24 +3,35 @@
  * decode uri
  *
  */
-const decodeUri = (uri: string): string => {
+const decodeUri = (inputString: string): string => {
+
+    const plusRegularExpression = /\+/g;
 
     // replace addition symbol with a space
-    const additionToSpace = '/\+/g';
+    return decodeURIComponent(inputString.replace(plusRegularExpression, ' '));
 
-    return decodeURIComponent(uri.replace(additionToSpace, ' '));
-
-};
+}
 
 /**
  *
  * encode uri
  *
  */
-const encodeUri = (uri: string): string => {
+const encodeUri = (inputString: string): string => {
 
-    return encodeURIComponent(uri);
+    const findRegularExpression = /[!'\(\)~]|%20|%00/g;
+    const replaceList: any = {
+        '!': '%21',
+        "'": '%27',
+        '(': '%28',
+        ')': '%29',
+        '~': '%7E',
+        '%20': '+',
+        '%00': '+'
+    };
 
-};
+    return encodeURIComponent(inputString).replace(findRegularExpression, (match) => { return replaceList[match]; });
+
+}
 
 export { decodeUri, encodeUri };

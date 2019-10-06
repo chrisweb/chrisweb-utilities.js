@@ -5,32 +5,43 @@ import { decodeUri } from './uri';
  * get url parameters
  *
  */
-const getUrlParameters = (query: string = ''): string[] => {
+const getUrlParameters = (query: string = ''): { [s: string]: string; } => {
 
-    if (query === '') {
+    const urlParameters: { [s: string]: string; } = {};
 
-        if (window !== undefined) {
-            query = window.location.search.substring(1);
-        } else {
-            throw 'you must provide a query to parse';
+    if (query !== '' && typeof query === 'string') {
+
+        const questionmarkIndex = query.indexOf('?');
+
+        // if -1 there is no questionmark, skip, all is fine
+        // else just keep what comes after the questionmark
+        if (questionmarkIndex !== -1) {
+            query = query.slice(questionmarkIndex+1);
+        }
+
+        const pairs: string[] = query.split('&');
+        let i;
+
+        for (i = 0; i < pairs.length; i++) {
+
+            const pair: string = pairs[i];
+            const equalIndex: number = pair.indexOf('=');
+            let parameterKey: string = '';
+            let parameterValue: string = '';
+
+            if (equalIndex > -1) {
+                parameterKey = pair.slice(0, equalIndex);
+                parameterValue = pair.slice(equalIndex+1);
+            } else {
+                parameterKey = pair;
+            }
+
+            urlParameters[decodeUri(parameterKey)] = decodeUri(parameterValue);
         }
 
     }
 
-    const search = /([^&=]+)=?([^&]*)/g;
-    const urlParams: any = {};
-    const parameters = search.exec(query);
-    let i;
-
-    for (i = 0; i <= parameters.length; i++) {
-
-        const parameter = parameters[i];
-
-        urlParams[parameter[1]] = decodeUri(parameter[2]);
-
-    }
-
-    return urlParams;
+    return urlParameters;
 
 };
 
@@ -58,7 +69,7 @@ const getUrlParameterByName = (name: string, url: string): string => {
         return '';
     }
 
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    return decodeUri(results[2]);
 
 };
 

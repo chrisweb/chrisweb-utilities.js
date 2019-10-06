@@ -3,7 +3,9 @@
  * get url parameters
  *
  */
-declare const getUrlParameters: (query?: string) => string[];
+declare const getUrlParameters: (query?: string) => {
+    [s: string]: string;
+};
 /**
  *
  * URL utility to get a parameter by name from an URL

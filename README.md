@@ -1,4 +1,12 @@
-# chrisweb utilities.js 1.0.0
+[![Dependencies](https://david-dm.org/chrisweb/chrisweb-utilities.js/status.svg)](https://david-dm.org/chrisweb/chrisweb-utilities.js)
+[![DevDependencies](https://david-dm.org/chrisweb/chrisweb-utilities.js/dev-status.svg)](https://david-dm.org/chrisweb/chrisweb-utilities.js)
+[![GitHub release](https://img.shields.io/github/release/chrisweb/chrisweb-utilities.js.svg)](https://github.com/chrisweb/chrisweb-utilities.js/releases)
+[![GitHub file size in bytes](https://img.shields.io/github/size/chrisweb/chrisweb-utilities.js/dist/index.esm.js.svg)](https://github.com/chrisweb/chrisweb-utilities.js)
+[![Module formats](https://img.shields.io/badge/module%20formats-ESM%20+%20UMD-green.svg)](https://github.com/chrisweb/chrisweb-utilities.js/tree/master/dist)
+[![GitHub license](https://img.shields.io/github/license/chrisweb/chrisweb-utilities.js.svg)](https://github.com/chrisweb/chrisweb-utilities.js/blob/master/LICENSE)
+[![issues / PRs](https://img.shields.io/badge/issues%20/%20PRs-welcome-green.svg)](https://github.com/chrisweb/chrisweb-utilities.js/issues/new/choose)
+
+# chrisweb utilities.js
 
 Javascript utilities belt for very specific tasks.
 
@@ -22,26 +30,66 @@ install the dependencies
 
 `npm install`
 
+to lint the typescript files
+
+`npm run lint`
+
+run the tests  
+
+`npm run test`
+
 to build the distributions (es6 module (esm.js) and the UMD version)
 
 `npm run build`
+
+or by using yarn  
+
+`yarn build`
+
+## development
 
 in devlopment you can use watch to rebuild every time you edit a typescript file
 
 `npm run watch`
 
-to lint the typescript files
+you can also use watch for the test suite  
 
-`npm run lint`
+`npm run watch:test`
 
 ## contributing
 
-Bug reports, tests, fixes, new features and all kind of comments / feedback are welcome 😃
+Bug reports, tests, fixes, new features and all kind of comments / feedback are welcome 😃 [Submit a feature request or bug issue](https://github.com/chrisweb/chrisweb-utilities.js/issues/new/choose)
+
+## testing setup notes
+
+I used the [jest testing framework](https://jestjs.io/)
+
+I added the jest typescript types and the [ts-jest package](https://github.com/kulshekhar/ts-jest)  
+
+installed dependencies:  
+
+`npm install --save-dev jest @types/jest ts-jest`
+
+command to create a basic jest.config.js file:  
+
+`npx ts-jest config:init	yarn ts-jest config:init`
+
+If you use VSCode, consider using the [vscode jest extension](https://github.com/jest-community/vscode-jest)
+
+Besides reading the official documentation, you can check out this quick [introduction to jest](https://flaviocopes.com/jest/)  blog post
+
+## linting setup notes
+
+	> we plan to deprecate TSLint and focus our efforts instead on improving ESLint’s TypeScript support  
+    
+Their [blog post](https://medium.com/palantir/tslint-in-2019-1a144c2317a9) announcing that [TSLint](https://github.com/palantir/tslint) will be deprecated in 2019 and you should switch to [ESLint](https://github.com/eslint/eslint) when TSLint is officially deprecated  
+
+TSlint will be deprecated [github ticket](https://github.com/palantir/tslint/issues/4534)  
 
 ## features
 
 ### utilities.log
-Colored console log messages for the browser and or nodejs (iojs)
+Colored console log messages for the browser and / or nodejs
 ```
   utilities.log('foo', 'bar', 'fontColor:red', 'backgroundColor:blue');
 ```

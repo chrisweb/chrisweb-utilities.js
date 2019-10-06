@@ -41,18 +41,28 @@ var isClient = function () {
  * decode uri
  *
  */
-var decodeUri = function (uri) {
+var decodeUri = function (inputString) {
+    var plusRegularExpression = /\+/g;
     // replace addition symbol with a space
-    var additionToSpace = '/\+/g';
-    return decodeURIComponent(uri.replace(additionToSpace, ' '));
+    return decodeURIComponent(inputString.replace(plusRegularExpression, ' '));
 };
 /**
  *
  * encode uri
  *
  */
-var encodeUri = function (uri) {
-    return encodeURIComponent(uri);
+var encodeUri = function (inputString) {
+    var findRegularExpression = /[!'\(\)~]|%20|%00/g;
+    var replaceList = {
+        '!': '%21',
+        "'": '%27',
+        '(': '%28',
+        ')': '%29',
+        '~': '%7E',
+        '%20': '+',
+        '%00': '+'
+    };
+    return encodeURIComponent(inputString).replace(findRegularExpression, function (match) { return replaceList[match]; });
 };
 
 /**
@@ -62,23 +72,32 @@ var encodeUri = function (uri) {
  */
 var getUrlParameters = function (query) {
     if (query === void 0) { query = ''; }
-    if (query === '') {
-        if (window !== undefined) {
-            query = window.location.search.substring(1);
+    var urlParameters = {};
+    if (query !== '' && typeof query === 'string') {
+        var questionmarkIndex = query.indexOf('?');
+        // if -1 there is no questionmark, skip, all is fine
+        // else just keep what comes after the questionmark
+        if (questionmarkIndex !== -1) {
+            query = query.slice(questionmarkIndex + 1);
         }
-        else {
-            throw 'you must provide a query to parse';
+        var pairs = query.split('&');
+        var i = void 0;
+        for (i = 0; i < pairs.length; i++) {
+            var pair = pairs[i];
+            var equalIndex = pair.indexOf('=');
+            var parameterKey = '';
+            var parameterValue = '';
+            if (equalIndex > -1) {
+                parameterKey = pair.slice(0, equalIndex);
+                parameterValue = pair.slice(equalIndex + 1);
+            }
+            else {
+                parameterKey = pair;
+            }
+            urlParameters[decodeUri(parameterKey)] = decodeUri(parameterValue);
         }
     }
-    var search = /([^&=]+)=?([^&]*)/g;
-    var urlParams = {};
-    var parameters = search.exec(query);
-    var i;
-    for (i = 0; i <= parameters.length; i++) {
-        var parameter = parameters[i];
-        urlParams[parameter[1]] = decodeUri(parameter[2]);
-    }
-    return urlParams;
+    return urlParameters;
 };
 /**
  *
@@ -98,7 +117,7 @@ var getUrlParameterByName = function (name, url) {
     if (!results[2]) {
         return '';
     }
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    return decodeUri(results[2]);
 };
 /**
  *
@@ -118,11 +137,132 @@ var replaceUrlParameter = function (url, paramName, paramValue) {
  * array related functions
  *
  */
-var arrayRemove = function (array, removeMe) {
+var _this = undefined;
+var remove = function (array, removeMe) {
     var index = array.indexOf(removeMe);
     if (index > -1) {
         array.splice(index, 1);
     }
+};
+var isArray = function (input) {
+    // MDN is array documentation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray
+    if (!Array.isArray) {
+        return Object.prototype.toString.call(input) === '[object Array]';
+    }
+    else {
+        return Array.isArray(input);
+    }
+};
+var includes = function (inputArray, valueToFind, fromIndex) {
+    // MDN includes documentation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
+    if (!Array.prototype.includes) {
+        // https://tc39.github.io/ecma262/#sec-array.prototype.includes
+        if (_this == null) {
+            throw new TypeError('"this" is null or not defined');
+        }
+        // 1. Let O be ? ToObject(this value)
+        var o = Object(_this);
+        // 2. Let len be ? ToLength(? Get(O, "length"))
+        var len = o.length >>> 0;
+        // 3. If len is 0, return false
+        if (len === 0) {
+            return false;
+        }
+        // 4. Let n be ? ToInteger(fromIndex)
+        //    (If fromIndex is undefined, this step produces the value 0.)
+        var n = fromIndex | 0;
+        // 5. If n ≥ 0, then
+        //  a. Let k be n.
+        // 6. Else n < 0,
+        //  a. Let k be len + n.
+        //  b. If k < 0, let k be 0.
+        var k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+        // 7. Repeat, while k < len
+        while (k < len) {
+            // a. Let elementK be the result of ? Get(O, ! ToString(k))
+            // b. If SameValueZero(valueToFind, elementK) is true, return true
+            if (sameValueZero(o[k], valueToFind)) {
+                return true;
+            }
+            // c. Increase k by 1
+            k++;
+        }
+        // 8. Return false
+        return false;
+    }
+    else {
+        var n = fromIndex | 0;
+        return inputArray.includes(valueToFind, n);
+    }
+};
+var sameValueZero = function (x, y) {
+    return x === y || (typeof x === 'number' && typeof y === 'number' && isNaN(x) && isNaN(y));
+};
+var find = function (inputArray, predicate, args) {
+    // MDN find documentation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+    if (!Array.prototype.find) {
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+        // 1. Let O be ? ToObject(this value)
+        if (_this == null) {
+            throw new TypeError('"this" is null or not defined');
+        }
+        var o = Object(_this);
+        // 2. Let len be ? ToLength(? Get(O, "length"))
+        var len = o.length >>> 0;
+        // 3. If IsCallable(predicate) is false, throw a TypeError exception
+        if (typeof predicate !== 'function') {
+            throw new TypeError('predicate must be a function');
+        }
+        // 4. If thisArg was supplied, let T be thisArg; else let T be undefined
+        var thisArg = args[1];
+        // 5. Let k be 0.
+        var k = 0;
+        // 6. Repeat, while k < len
+        while (k < len) {
+            // a. Let Pk be ! ToString(k)
+            // b. Let kValue be ? Get(O, Pk)
+            // c. Let testResult be ToBoolean(? Call(predicate, T, « kValue, k, O »))
+            // d. If testResult is true, return kValue
+            var kValue = o[k];
+            if (predicate.call(thisArg, kValue, k, o)) {
+                return kValue;
+            }
+            // e. Increase k by 1
+            k++;
+        }
+        // 7. Return undefined
+        return undefined;
+    }
+    else {
+        return inputArray.find(predicate, args);
+    }
+};
+/**
+ *
+ * array flat polyfill, if depth is unknow set it to "Infinity"
+ *
+ */
+var flat = function (inputArray, depth) {
+    // MDN flat documentation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat
+    if (!Array.prototype.flat) {
+        return flatten(inputArray, Math.floor(depth) || 1);
+    }
+    else {
+        return inputArray.flat(depth);
+    }
+};
+var flatten = function (inputArray, depth) {
+    var flattend = [];
+    for (var _i = 0, inputArray_1 = inputArray; _i < inputArray_1.length; _i++) {
+        var el = inputArray_1[_i];
+        if (isArray(el) && depth > 0) {
+            flatten(el, depth - 1);
+        }
+        else {
+            flattend.push(el);
+        }
+    }
+    return flattend;
 };
 
 /**
@@ -465,5 +605,5 @@ var handleLogArguments = function (logArguments) {
 
 var version = '1.0.0';
 
-export { arrayRemove, capitaliseFirstLetter, decodeUri, encodeUri, filterAlphaNumericPlus, generateUUID, getSubstringIndex, getTimestamp, getUrlParameterByName, getUrlParameters, isClient, isServer, log, removeElements, replacePlaceholders, replaceUrlParameter, stringContains, version };
+export { capitaliseFirstLetter, decodeUri, encodeUri, filterAlphaNumericPlus, find, flat, generateUUID, getSubstringIndex, getTimestamp, getUrlParameterByName, getUrlParameters, includes, isArray, isClient, isServer, log, remove, removeElements, replacePlaceholders, replaceUrlParameter, stringContains, version };
 //# sourceMappingURL=index.esm.js.map
