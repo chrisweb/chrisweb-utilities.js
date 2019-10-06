@@ -27,6 +27,7 @@ const isArray = (input: any): boolean => {
 };
 
 declare global  {
+    // tslint:disable-next-line
     interface Array<T> {
         includes(valueToFind: string, fromIndex?: number): boolean;
     }
@@ -142,6 +143,7 @@ const find = (inputArray: [], predicate: any, args: any): {} => {
 };
 
 declare global  {
+    // tslint:disable-next-line
     interface Array<T> {
         flat(depth: number): [];
     }

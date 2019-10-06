@@ -16,7 +16,7 @@ const getUrlParameters = (query: string = ''): { [s: string]: string; } => {
         // if -1 there is no questionmark, skip, all is fine
         // else just keep what comes after the questionmark
         if (questionmarkIndex !== -1) {
-            query = query.slice(questionmarkIndex+1);
+            query = query.slice(questionmarkIndex + 1);
         }
 
         const pairs: string[] = query.split('&');
@@ -31,7 +31,7 @@ const getUrlParameters = (query: string = ''): { [s: string]: string; } => {
 
             if (equalIndex > -1) {
                 parameterKey = pair.slice(0, equalIndex);
-                parameterValue = pair.slice(equalIndex+1);
+                parameterValue = pair.slice(equalIndex + 1);
             } else {
                 parameterKey = pair;
             }

@@ -10,7 +10,7 @@ const decodeUri = (inputString: string): string => {
     // replace addition symbol with a space
     return decodeURIComponent(inputString.replace(plusRegularExpression, ' '));
 
-}
+};
 
 /**
  *
@@ -22,6 +22,7 @@ const encodeUri = (inputString: string): string => {
     const findRegularExpression = /[!'\(\)~]|%20|%00/g;
     const replaceList: any = {
         '!': '%21',
+        // tslint:disable-next-line
         "'": '%27',
         '(': '%28',
         ')': '%29',
@@ -32,6 +33,6 @@ const encodeUri = (inputString: string): string => {
 
     return encodeURIComponent(inputString).replace(findRegularExpression, (match) => { return replaceList[match]; });
 
-}
+};
 
 export { decodeUri, encodeUri };

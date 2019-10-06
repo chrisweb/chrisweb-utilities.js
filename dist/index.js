@@ -61,6 +61,7 @@
         var findRegularExpression = /[!'\(\)~]|%20|%00/g;
         var replaceList = {
             '!': '%21',
+            // tslint:disable-next-line
             "'": '%27',
             '(': '%28',
             ')': '%29',
