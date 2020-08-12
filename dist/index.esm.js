@@ -52,7 +52,7 @@ var decodeUri = function (inputString) {
  *
  */
 var encodeUri = function (inputString) {
-    var findRegularExpression = /[!'\(\)~]|%20|%00/g;
+    var findRegularExpression = /[!'()~]|%20|%00/g;
     var replaceList = {
         '!': '%21',
         // tslint:disable-next-line
@@ -109,7 +109,7 @@ var getUrlParameterByName = function (name, url) {
     if (!url) {
         url = window.location.href;
     }
-    name = name.replace(/[\[\]]/g, '\\$&');
+    name = name.replace(/[[]]/g, '\\$&');
     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
     var results = regex.exec(url);
     if (!results) {
@@ -199,6 +199,7 @@ var includes = function (inputArray, valueToFind, fromIndex) {
 var sameValueZero = function (x, y) {
     return x === y || (typeof x === 'number' && typeof y === 'number' && isNaN(x) && isNaN(y));
 };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
 var find = function (inputArray, predicate, args) {
     // MDN find documentation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
     if (!Array.prototype.find) {
@@ -235,6 +236,7 @@ var find = function (inputArray, predicate, args) {
         return undefined;
     }
     else {
+        // eslint-disable-next-line
         return inputArray.find(predicate, args);
     }
 };
@@ -245,6 +247,7 @@ var find = function (inputArray, predicate, args) {
  */
 var flat = function (inputArray, depth) {
     // MDN flat documentation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat
+    if (depth === void 0) { depth = Infinity; }
     if (!Array.prototype.flat) {
         return flatten(inputArray, Math.floor(depth) || 1);
     }
@@ -253,6 +256,7 @@ var flat = function (inputArray, depth) {
     }
 };
 var flatten = function (inputArray, depth) {
+    if (depth === void 0) { depth = Infinity; }
     var flattend = [];
     for (var _i = 0, inputArray_1 = inputArray; _i < inputArray_1.length; _i++) {
         var el = inputArray_1[_i];
@@ -351,6 +355,7 @@ var replacePlaceholders = function (input, replacements) {
 var generateUUID = function () {
     // http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript
     // http://www.ietf.org/rfc/rfc4122.txt
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     var s = [];
     var hexDigits = '0123456789abcdef';
     var i;
@@ -403,12 +408,26 @@ var htmlLog = function (logObjects, logObjectsLength, logFontColor, logBackgroun
     for (i = 0; i < logObjectsLength; i++) {
         var logSpan = document.createElement('span');
         logSpan.style.cssText = 'color: #' + logFontColor + '; background-color: #' + logBackgroundColor + ';';
-        var spanContent = document.createTextNode(logObjects[i]);
+        var logObject = logObjects[i];
+        var spanContent = document.createTextNode(logObject);
         logSpan.appendChild(spanContent);
         document.getElementById('log').appendChild(logSpan);
         var brElement = document.createElement('br');
         document.getElementById('log').appendChild(brElement);
     }
+};
+
+/**
+ *
+ * file log
+ * nodejs logging to file
+ *
+ */
+var fileLog = function (logObjects, logObjectsLength, logFontColor) {
+    console.log(logObjects);
+    console.log(logObjectsLength);
+    console.log(logFontColor);
+    throw new Error('sorry this feature is broken');
 };
 
 var defaultLogFontColor = 'default';
@@ -425,7 +444,7 @@ var log = function () {
     }
     // is console defined, some older IEs don't have a console
     if (typeof (console) === 'undefined') {
-        return false;
+        throw new Error('This browser does not support console');
     }
     // extract options and get objects to log
     // read: https://github.com/Microsoft/TypeScript/issues/1609
@@ -449,6 +468,11 @@ var log = function () {
                 }
             }
         }
+        // log to file if logSpecial is enabled or if the fontColor is red
+        // if (logSpecial === true || logFontColor === 'red') {
+        if (logFontColor === 'red') {
+            fileLog(logObjects, logObjectsLength, logFontColor);
+        }
     }
     else {
         // get background and fontColor codes
@@ -466,7 +490,11 @@ var log = function () {
         }
         // log to html if logSpecial is enabled
         //if (logSpecial === true) {
-        htmlLog(logObjects, logObjectsLength, color.font, color.background);
+        var stringLogObjects_1 = [];
+        logObjects.forEach(function (logObject) {
+            stringLogObjects_1.push(logObject.toString());
+        });
+        htmlLog(stringLogObjects_1, logObjectsLength, color.font, color.background);
         //}
     }
 };
@@ -586,7 +614,7 @@ var handleLogArguments = function (logArguments) {
     var i;
     for (i = 0; i < argumentsLength; i++) {
         var argument = logArguments[i];
-        if (typeof (argument) === 'string') {
+        if (typeof argument === 'string') {
             if (argument.substr(0, 10) === 'fontColor:') {
                 logFontColor = argument.substr(10, argument.length).trim();
             }

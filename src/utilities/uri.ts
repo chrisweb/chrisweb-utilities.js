@@ -1,3 +1,7 @@
+type TReplaceList = {
+    [key: string]: string
+}
+
 /**
  *
  * decode uri
@@ -19,8 +23,8 @@ const decodeUri = (inputString: string): string => {
  */
 const encodeUri = (inputString: string): string => {
 
-    const findRegularExpression = /[!'\(\)~]|%20|%00/g;
-    const replaceList: any = {
+    const findRegularExpression = /[!'()~]|%20|%00/g;
+    const replaceList: TReplaceList = {
         '!': '%21',
         // tslint:disable-next-line
         "'": '%27',

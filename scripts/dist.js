@@ -1,5 +1,6 @@
-import typescript from 'rollup-plugin-typescript2'
-import pkg from '../package.json'
+import typescript from '@rollup/plugin-typescript';
+import pkg from '../package.json';
+
 export default {
   input: 'src/index.ts',
   output: [
@@ -15,10 +16,9 @@ export default {
       sourcemap: true
     },
   ],
-plugins: [
-    typescript({
-        tsconfig: "src/tsconfig.json",
-        useTsconfigDeclarationDir: true
-    }),
+  context: 'undefined',
+  moduleContext: 'undefined',
+  plugins: [
+    typescript(),
   ],
 }

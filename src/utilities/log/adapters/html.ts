@@ -7,7 +7,7 @@ import { removeElements } from './../../html';
  * can be usefull on mobile if no other console is available
  *
  */
-const htmlLog = (logObjects: any, logObjectsLength: number, logFontColor: string, logBackgroundColor: string): void => {
+const htmlLog = (logObjects: string[], logObjectsLength: number, logFontColor: string, logBackgroundColor: string): void => {
 
     // TODO: fix: seems that if logging starts before "domload" some
     // messages get lost
@@ -32,7 +32,9 @@ const htmlLog = (logObjects: any, logObjectsLength: number, logFontColor: string
 
         logSpan.style.cssText = 'color: #' + logFontColor + '; background-color: #' + logBackgroundColor + ';';
 
-        const spanContent = document.createTextNode(logObjects[i]);
+        const logObject = logObjects[i];
+
+        const spanContent = document.createTextNode(logObject);
 
         logSpan.appendChild(spanContent);
 
@@ -51,7 +53,7 @@ const htmlLog = (logObjects: any, logObjectsLength: number, logFontColor: string
  * extracts html elements (and their content) from strings
  *
  */
-const safeUnescape = (rawText: string, extendedEscape: boolean = false, myEscapeList: string[]): string => {
+const safeUnescape = (rawText: string, extendedEscape = false, myEscapeList: string[]): string => {
 
     interface IEscapeList {
         [key: string]: string;
@@ -157,4 +159,4 @@ const safeUnescape = (rawText: string, extendedEscape: boolean = false, myEscape
 
 };
 
-export { htmlLog };
+export { htmlLog, safeUnescape };

@@ -3,11 +3,13 @@
  * returns a universally unique identifier
  *
  */
-const generateUUID = () => {
+const generateUUID = (): string => {
 
     // http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript
 
     // http://www.ietf.org/rfc/rfc4122.txt
+    
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const s: any[] = [];
     const hexDigits = '0123456789abcdef';
     let i;

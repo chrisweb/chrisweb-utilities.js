@@ -4,7 +4,6 @@
  *
  */
 
-
 const remove = (array: string[], removeMe: string): void => {
 
     const index = array.indexOf(removeMe);
@@ -15,7 +14,7 @@ const remove = (array: string[], removeMe: string): void => {
 
 };
 
-const isArray = (input: any): boolean => {
+const isArray = (input: unknown): boolean => {
 
     // MDN is array documentation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray
 
@@ -24,10 +23,11 @@ const isArray = (input: any): boolean => {
     } else {
         return Array.isArray(input);
     }
+
 };
 
 declare global  {
-    // tslint:disable-next-line
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     interface Array<T> {
         includes(valueToFind: string, fromIndex?: number): boolean;
     }
@@ -46,10 +46,10 @@ const includes = (inputArray: [], valueToFind: string, fromIndex?: number): bool
         }
 
         // 1. Let O be ? ToObject(this value)
-        let o = Object(this);
+        const o = Object(this);
 
         // 2. Let len be ? ToLength(? Get(O, "length"))
-        let len = o.length >>> 0;
+        const len = o.length >>> 0;
 
         // 3. If len is 0, return false
         if (len === 0) {
@@ -58,7 +58,7 @@ const includes = (inputArray: [], valueToFind: string, fromIndex?: number): bool
 
         // 4. Let n be ? ToInteger(fromIndex)
         //    (If fromIndex is undefined, this step produces the value 0.)
-        let n = fromIndex | 0;
+        const n = fromIndex | 0;
 
         // 5. If n ≥ 0, then
         //  a. Let k be n.
@@ -81,17 +81,17 @@ const includes = (inputArray: [], valueToFind: string, fromIndex?: number): bool
         // 8. Return false
         return false;
     } else {
-        let n = fromIndex | 0;
+        const n = fromIndex | 0;
         return inputArray.includes(valueToFind, n);
     }
 };
 
-const sameValueZero = (x: any, y: any): boolean => {
+const sameValueZero = (x: unknown, y: unknown): boolean => {
     return x === y || (typeof x === 'number' && typeof y === 'number' && isNaN(x) && isNaN(y));
 };
 
-
-const find = (inputArray: [], predicate: any, args: any): {} => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
+const find = (inputArray: [], predicate: (this: void, value: never, index: number, obj: never[]) => value is never, args?: any): never | undefined => {
 
     // MDN find documentation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
 
@@ -104,10 +104,10 @@ const find = (inputArray: [], predicate: any, args: any): {} => {
             throw new TypeError('"this" is null or not defined');
         }
 
-        let o = Object(this);
+        const o = Object(this);
 
         // 2. Let len be ? ToLength(? Get(O, "length"))
-        let len = o.length >>> 0;
+        const len = o.length >>> 0;
 
         // 3. If IsCallable(predicate) is false, throw a TypeError exception
         if (typeof predicate !== 'function') {
@@ -115,7 +115,7 @@ const find = (inputArray: [], predicate: any, args: any): {} => {
         }
 
         // 4. If thisArg was supplied, let T be thisArg; else let T be undefined
-        let thisArg = args[1];
+        const thisArg = args[1];
 
         // 5. Let k be 0.
         let k = 0;
@@ -126,7 +126,7 @@ const find = (inputArray: [], predicate: any, args: any): {} => {
             // b. Let kValue be ? Get(O, Pk)
             // c. Let testResult be ToBoolean(? Call(predicate, T, « kValue, k, O »))
             // d. If testResult is true, return kValue
-            let kValue = o[k];
+            const kValue = o[k];
             if (predicate.call(thisArg, kValue, k, o)) {
                 return kValue;
             }
@@ -138,12 +138,13 @@ const find = (inputArray: [], predicate: any, args: any): {} => {
         return undefined;
 
     } else {
+        // eslint-disable-next-line
         return inputArray.find(predicate, args);
     }
 };
 
 declare global  {
-    // tslint:disable-next-line
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     interface Array<T> {
         flat(depth: number): [];
     }
@@ -154,7 +155,7 @@ declare global  {
  * array flat polyfill, if depth is unknow set it to "Infinity"
  *
  */
-const flat = (inputArray: [], depth: any): [] => {
+const flat = (inputArray: [], depth = Infinity): [] => {
 
     // MDN flat documentation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat
 
@@ -166,11 +167,11 @@ const flat = (inputArray: [], depth: any): [] => {
 
 };
 
-const flatten = (inputArray: [], depth: any): [] => {
+const flatten = (inputArray: [], depth = Infinity): [] => {
 
-    let flattend: [] = [];
+    const flattend: [] = [];
 
-    for (let el of inputArray) {
+    for (const el of inputArray) {
         if (isArray(el) && depth > 0) {
             flatten(el, depth - 1);
         } else {

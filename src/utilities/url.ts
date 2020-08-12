@@ -5,7 +5,7 @@ import { decodeUri } from './uri';
  * get url parameters
  *
  */
-const getUrlParameters = (query: string = ''): { [s: string]: string; } => {
+const getUrlParameters = (query = ''): { [s: string]: string; } => {
 
     const urlParameters: { [s: string]: string; } = {};
 
@@ -26,8 +26,8 @@ const getUrlParameters = (query: string = ''): { [s: string]: string; } => {
 
             const pair: string = pairs[i];
             const equalIndex: number = pair.indexOf('=');
-            let parameterKey: string = '';
-            let parameterValue: string = '';
+            let parameterKey = '';
+            let parameterValue = '';
 
             if (equalIndex > -1) {
                 parameterKey = pair.slice(0, equalIndex);
@@ -56,7 +56,7 @@ const getUrlParameterByName = (name: string, url: string): string => {
         url = window.location.href;
     }
 
-    name = name.replace(/[\[\]]/g, '\\$&');
+    name = name.replace(/[[]]/g, '\\$&');
 
     const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
     const results = regex.exec(url);

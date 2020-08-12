@@ -14,7 +14,8 @@
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "lib": [ "es6", "dom" ],
-    "target": "es5"
+    "target": "es5",
+    "downlevelIteration": true // fix for string as array, iterate over string (used in uri.ts)
   },
   "exclude": [
     "node_modules",

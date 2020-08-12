@@ -1,6 +1,6 @@
 {
   "name": "chrisweb-utilities",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "chrisweb utilities",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -9,7 +9,7 @@
   ],
   "types": "./dist/@types/chrisweb-utilities/index.d.ts",
   "scripts": {
-    "lint": "tslint \"src/**/*.ts\"",
+    "lint": "./node_modules/.bin/eslint src/**/*",
     "build": "rollup -c ./scripts/dist.js",
     "watch": "rollup -cw ./scripts/dist.js",
     "test": "jest",
@@ -33,13 +33,15 @@
   },
   "homepage": "https://github.com/chrisweb/chrisweb-utilities.js",
   "devDependencies": {
-    "@types/jest": "24.0.23",
-    "jest": "24.9.0",
-    "rollup": "1.27.0",
-    "rollup-plugin-typescript2": "0.25.2",
-    "ts-jest": "24.1.0",
-    "tslint": "5.20.1",
-    "tslint-eslint-rules": "5.4.0",
-    "typescript": "3.7.2"
+    "@types/jest": "26.0.9",
+    "jest": "26.3.0",
+    "rollup": "2.23.1",
+    "@rollup/plugin-typescript": "5.0.2",
+    "ts-jest": "26.2.0",
+    "eslint": "7.6.0",
+    "eslint-plugin-import": "2.22.0",
+    "@typescript-eslint/eslint-plugin": "3.9.0",
+    "@typescript-eslint/parser": "3.9.0",
+    "typescript": "3.9.7"
   }
 }

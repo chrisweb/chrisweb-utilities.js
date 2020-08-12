@@ -1,22 +1,22 @@
 import { htmlLog } from './log/adapters/html';
 import { fileLog } from './log/adapters/file';
 
-const defaultLogFontColor: string = 'default';
-const defaultLogBackgroundColor: string = 'default';
-const logSpecial: boolean = false;
-const logVerbose: boolean = true;
+const defaultLogFontColor = 'default';
+const defaultLogBackgroundColor = 'default';
+//const logSpecial = false;
+const logVerbose = true;
 
 /**
  *
  * log messages
  *
  */
-const log = (...args: string[]) => {
+const log = (...args: unknown[]): void => {
 
     // is console defined, some older IEs don't have a console
     if (typeof (console) === 'undefined') {
 
-        return false;
+        throw new Error('This browser does not support console');
 
     }
 
@@ -84,7 +84,13 @@ const log = (...args: string[]) => {
         // log to html if logSpecial is enabled
         //if (logSpecial === true) {
 
-            htmlLog(logObjects, logObjectsLength, color.font, color.background);
+        const stringLogObjects: string[] = [];
+
+        logObjects.forEach((logObject) => {
+            stringLogObjects.push(logObject.toString())
+        });
+
+        htmlLog(stringLogObjects, logObjectsLength, color.font, color.background);
 
         //}
 
@@ -237,7 +243,7 @@ const getServerColors = (logFontColor: string, logBackgroundColor: string) => {
  * extract the color infos from the arguments to log
  *
  */
-const handleLogArguments = (logArguments?: string[]) => {
+const handleLogArguments = (logArguments?: unknown[]) => {
 
     const logObjects = [];
 
@@ -252,7 +258,7 @@ const handleLogArguments = (logArguments?: string[]) => {
 
         const argument = logArguments[i];
 
-        if (typeof (argument) === 'string') {
+        if (typeof argument === 'string') {
 
             if (argument.substr(0, 10) === 'fontColor:') {
                 logFontColor = argument.substr(10, argument.length).trim();

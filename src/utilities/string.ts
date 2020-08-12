@@ -89,7 +89,7 @@ const getSubstringIndex = (inputString: string, substring: string, nthTime: numb
  * replace the placeholder(s) with some value
  *
  */
-const replacePlaceholders = (input: string, replacements: any): string => {
+const replacePlaceholders = (input: string, replacements: string): string => {
 
     let output = input;
 

@@ -4,7 +4,13 @@
  * nodejs logging to file
  *
  */
-const fileLog = (logObjects: {}, logObjectsLength: number, logFontColor: string) => {
+const fileLog = (logObjects: unknown, logObjectsLength: number, logFontColor: string): void => {
+
+    console.log(logObjects);
+    console.log(logObjectsLength);
+    console.log(logFontColor);
+
+    throw new Error('sorry this feature is broken');
 
     try {
 

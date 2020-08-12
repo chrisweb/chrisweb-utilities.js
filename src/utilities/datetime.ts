@@ -1,14 +1,14 @@
 /**
  * returns the timestamp for any date or for now(), also works with browsers that dont support es5 Date.now
  */
-const getTimestamp = (dateString: string|number = ''): number => {
+const getTimestamp = (dateString: string | number = ''): number => {
 
     let timestamp: number;
 
     if (dateString === '') {
         timestamp = new Date().getTime();
     } else {
-        let date = new Date(dateString);
+        const date = new Date(dateString);
         timestamp = date.getTime();
     }
 
