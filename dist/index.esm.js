@@ -632,7 +632,15 @@ var handleLogArguments = function (logArguments) {
     return { objects: logObjects, fontColor: logFontColor, backgroundColor: logBackgroundColor };
 };
 
+/**
+ * pauses your script for a given time, returns a promise that you can use to do so
+ * @param ms
+ */
+var sleep = function (ms) {
+    return new Promise(function (resolve) { return setTimeout(resolve, ms); });
+};
+
 var version = '1.0.0';
 
-export { capitaliseFirstLetter, decodeUri, encodeUri, filterAlphaNumericPlus, find, flat, generateUUID, getSubstringIndex, getTimestamp, getUrlParameterByName, getUrlParameters, includes, isArray, isClient, isServer, log, remove, removeElements, replacePlaceholders, replaceUrlParameter, stringContains, version };
+export { capitaliseFirstLetter, decodeUri, encodeUri, filterAlphaNumericPlus, find, flat, generateUUID, getSubstringIndex, getTimestamp, getUrlParameterByName, getUrlParameters, includes, isArray, isClient, isServer, log, remove, removeElements, replacePlaceholders, replaceUrlParameter, sleep, stringContains, version };
 //# sourceMappingURL=index.esm.js.map

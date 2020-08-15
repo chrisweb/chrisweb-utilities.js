@@ -638,6 +638,14 @@
         return { objects: logObjects, fontColor: logFontColor, backgroundColor: logBackgroundColor };
     };
 
+    /**
+     * pauses your script for a given time, returns a promise that you can use to do so
+     * @param ms
+     */
+    var sleep = function (ms) {
+        return new Promise(function (resolve) { return setTimeout(resolve, ms); });
+    };
+
     var version = '1.0.0';
 
     exports.capitaliseFirstLetter = capitaliseFirstLetter;
@@ -660,6 +668,7 @@
     exports.removeElements = removeElements;
     exports.replacePlaceholders = replacePlaceholders;
     exports.replaceUrlParameter = replaceUrlParameter;
+    exports.sleep = sleep;
     exports.stringContains = stringContains;
     exports.version = version;
 

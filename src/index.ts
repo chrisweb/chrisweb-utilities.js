@@ -7,6 +7,7 @@ import { filterAlphaNumericPlus, capitaliseFirstLetter, stringContains, getSubst
 import { generateUUID } from './utilities/uuid';
 import { removeElements } from './utilities/html';
 import { log } from './utilities/log';
+import { sleep } from './utilities/helpers';
 
 const version = '1.0.0';
 
@@ -32,5 +33,6 @@ export {
     replacePlaceholders,
     generateUUID,
     removeElements,
-    log
+    log,
+    sleep
 };
