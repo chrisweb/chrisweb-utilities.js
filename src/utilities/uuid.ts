@@ -1,7 +1,5 @@
 /**
- *
  * returns a universally unique identifier
- *
  */
 const generateUUID = (): string => {
 

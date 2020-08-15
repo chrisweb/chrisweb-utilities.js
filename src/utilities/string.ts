@@ -1,9 +1,9 @@
 /**
- *
  * filters a string
  * removes everything that is a not an alpha or numeric character, plus
  * the characters if any got specified as second argument
- *
+ * @param inputString 
+ * @param specialCharacters 
  */
 const filterAlphaNumericPlus = (inputString: string, specialCharacters: string): string|boolean => {
 
@@ -30,9 +30,8 @@ const filterAlphaNumericPlus = (inputString: string, specialCharacters: string):
 };
 
 /**
- *
  * capitalise first letter of a string
- *
+ * @param inputString 
  */
 const capitaliseFirstLetter = (inputString: string): string => {
 
@@ -41,9 +40,9 @@ const capitaliseFirstLetter = (inputString: string): string => {
 };
 
 /**
- *
  * does a string contain another string
- *
+ * @param inputString 
+ * @param contains 
  */
 const stringContains = (inputString: string, contains: string): boolean => {
 
@@ -60,9 +59,10 @@ const stringContains = (inputString: string, contains: string): boolean => {
 };
 
 /**
- *
  * get the index of a substring in a string with optional nth time it occurs
- *
+ * @param inputString 
+ * @param substring 
+ * @param nthTime 
  */
 const getSubstringIndex = (inputString: string, substring: string, nthTime: number): number => {
 
@@ -85,9 +85,9 @@ const getSubstringIndex = (inputString: string, substring: string, nthTime: numb
 };
 
 /**
- *
  * replace the placeholder(s) with some value
- *
+ * @param input 
+ * @param replacements 
  */
 const replacePlaceholders = (input: string, replacements: string): string => {
 

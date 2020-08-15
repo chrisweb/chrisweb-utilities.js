@@ -3,9 +3,8 @@ type TReplaceList = {
 }
 
 /**
- *
  * decode uri
- *
+ * @param inputString 
  */
 const decodeUri = (inputString: string): string => {
 
@@ -17,9 +16,8 @@ const decodeUri = (inputString: string): string => {
 };
 
 /**
- *
  * encode uri
- *
+ * @param inputString 
  */
 const encodeUri = (inputString: string): string => {
 

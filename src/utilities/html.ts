@@ -1,7 +1,7 @@
 /**
- *
  * extracts html elements (and their content) from strings
- *
+ * @param text 
+ * @param removeTextBetweenTags 
  */
 const removeElements = (text: string, removeTextBetweenTags: boolean): string => {
 

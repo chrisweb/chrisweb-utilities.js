@@ -7,9 +7,8 @@ const defaultLogBackgroundColor = 'default';
 const logVerbose = true;
 
 /**
- *
  * log messages
- *
+ * @param args 
  */
 const log = (...args: unknown[]): void => {
 
@@ -111,9 +110,9 @@ interface IColors {
 }
 
 /**
- *
  * get the client side (browser) colors
- *
+ * @param logFontColor 
+ * @param logBackgroundColor 
  */
 const getClientColors = (logFontColor: string, logBackgroundColor: string) => {
 
@@ -168,9 +167,9 @@ const getClientColors = (logFontColor: string, logBackgroundColor: string) => {
 };
 
 /**
- *
  * get the colors for the backend (server) console
- *
+ * @param logFontColor 
+ * @param logBackgroundColor 
  */
 const getServerColors = (logFontColor: string, logBackgroundColor: string) => {
 
@@ -238,10 +237,9 @@ const getServerColors = (logFontColor: string, logBackgroundColor: string) => {
 };
 
 /**
- *
  * handle log arguments
  * extract the color infos from the arguments to log
- *
+ * @param logArguments 
  */
 const handleLogArguments = (logArguments?: unknown[]) => {
 

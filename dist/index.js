@@ -6,6 +6,7 @@
 
     /**
      * returns the timestamp for any date or for now(), also works with browsers that dont support es5 Date.now
+     * @param dateString
      */
     var getTimestamp = function (dateString) {
         if (dateString === void 0) { dateString = ''; }
@@ -21,9 +22,7 @@
     };
 
     /**
-     *
      * does the script run on the server
-     *
      */
     var isServer = function () {
         if (typeof (global) === 'object') {
@@ -34,18 +33,15 @@
         }
     };
     /**
-     *
      * does the script run in a client
-     *
      */
     var isClient = function () {
         return !isServer();
     };
 
     /**
-     *
      * decode uri
-     *
+     * @param inputString
      */
     var decodeUri = function (inputString) {
         var plusRegularExpression = /\+/g;
@@ -53,9 +49,8 @@
         return decodeURIComponent(inputString.replace(plusRegularExpression, ' '));
     };
     /**
-     *
      * encode uri
-     *
+     * @param inputString
      */
     var encodeUri = function (inputString) {
         var findRegularExpression = /[!'()~]|%20|%00/g;
@@ -73,9 +68,8 @@
     };
 
     /**
-     *
      * get url parameters
-     *
+     * @param query
      */
     var getUrlParameters = function (query) {
         if (query === void 0) { query = ''; }
@@ -107,9 +101,9 @@
         return urlParameters;
     };
     /**
-     *
      * URL utility to get a parameter by name from an URL
-     *
+     * @param name
+     * @param url
      */
     var getUrlParameterByName = function (name, url) {
         if (!url) {
@@ -127,9 +121,10 @@
         return decodeUri(results[2]);
     };
     /**
-     *
      * URL utility to replace a given parameter
-     *
+     * @param url
+     * @param paramName
+     * @param paramValue
      */
     var replaceUrlParameter = function (url, paramName, paramValue) {
         var pattern = new RegExp('\\b(' + paramName + '=).*?(&|$)');
@@ -139,18 +134,22 @@
         return url + (url.indexOf('?') > 0 ? '&' : '?') + paramName + '=' + paramValue;
     };
 
-    /**
-     *
-     * array related functions
-     *
-     */
     var _this = undefined;
+    /**
+     * finds "removeMe" and removes it from the array
+     * @param array
+     * @param removeMe
+     */
     var remove = function (array, removeMe) {
         var index = array.indexOf(removeMe);
         if (index > -1) {
             array.splice(index, 1);
         }
     };
+    /**
+     * is array with polyfill for older browsers
+     * @param input
+     */
     var isArray = function (input) {
         // MDN is array documentation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray
         if (!Array.isArray) {
@@ -160,7 +159,13 @@
             return Array.isArray(input);
         }
     };
-    var includes = function (inputArray, valueToFind, fromIndex) {
+    /**
+     * finds "toFind" in an array, starting at an optional index
+     * @param inputArray
+     * @param toFind
+     * @param fromIndex
+     */
+    var includes = function (inputArray, toFind, fromIndex) {
         // MDN includes documentation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
         if (!Array.prototype.includes) {
             // https://tc39.github.io/ecma262/#sec-array.prototype.includes
@@ -188,7 +193,7 @@
             while (k < len) {
                 // a. Let elementK be the result of ? Get(O, ! ToString(k))
                 // b. If SameValueZero(valueToFind, elementK) is true, return true
-                if (sameValueZero(o[k], valueToFind)) {
+                if (sameValueZero(o[k], toFind)) {
                     return true;
                 }
                 // c. Increase k by 1
@@ -199,12 +204,18 @@
         }
         else {
             var n = fromIndex | 0;
-            return inputArray.includes(valueToFind, n);
+            return inputArray.includes(toFind, n);
         }
     };
     var sameValueZero = function (x, y) {
         return x === y || (typeof x === 'number' && typeof y === 'number' && isNaN(x) && isNaN(y));
     };
+    /**
+     *
+     * @param inputArray
+     * @param predicate
+     * @param args
+     */
     // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
     var find = function (inputArray, predicate, args) {
         // MDN find documentation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
@@ -247,9 +258,9 @@
         }
     };
     /**
-     *
      * array flat polyfill, if depth is unknow set it to "Infinity"
-     *
+     * @param inputArray
+     * @param depth
      */
     var flat = function (inputArray, depth) {
         // MDN flat documentation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat
@@ -261,6 +272,11 @@
             return inputArray.flat(depth);
         }
     };
+    /**
+     * flattens a multidimensional array
+     * @param inputArray
+     * @param depth
+     */
     var flatten = function (inputArray, depth) {
         if (depth === void 0) { depth = Infinity; }
         var flattend = [];
@@ -277,11 +293,11 @@
     };
 
     /**
-     *
      * filters a string
      * removes everything that is a not an alpha or numeric character, plus
      * the characters if any got specified as second argument
-     *
+     * @param inputString
+     * @param specialCharacters
      */
     var filterAlphaNumericPlus = function (inputString, specialCharacters) {
         if (typeof (inputString) === 'string' && inputString.length > 0) {
@@ -298,17 +314,16 @@
         return false;
     };
     /**
-     *
      * capitalise first letter of a string
-     *
+     * @param inputString
      */
     var capitaliseFirstLetter = function (inputString) {
         return inputString.charAt(0).toUpperCase() + inputString.slice(1);
     };
     /**
-     *
      * does a string contain another string
-     *
+     * @param inputString
+     * @param contains
      */
     var stringContains = function (inputString, contains) {
         if (typeof inputString !== 'string') {
@@ -322,9 +337,10 @@
         }
     };
     /**
-     *
      * get the index of a substring in a string with optional nth time it occurs
-     *
+     * @param inputString
+     * @param substring
+     * @param nthTime
      */
     var getSubstringIndex = function (inputString, substring, nthTime) {
         var times = 0;
@@ -339,9 +355,9 @@
         return index;
     };
     /**
-     *
      * replace the placeholder(s) with some value
-     *
+     * @param input
+     * @param replacements
      */
     var replacePlaceholders = function (input, replacements) {
         var output = input;
@@ -354,9 +370,7 @@
     };
 
     /**
-     *
      * returns a universally unique identifier
-     *
      */
     var generateUUID = function () {
         // http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript
@@ -376,9 +390,9 @@
     };
 
     /**
-     *
      * extracts html elements (and their content) from strings
-     *
+     * @param text
+     * @param removeTextBetweenTags
      */
     var removeElements = function (text, removeTextBetweenTags) {
         if (removeTextBetweenTags === false) {
@@ -395,11 +409,13 @@
     };
 
     /**
-     *
      * html log
      * create a div an insert the messages in div
      * can be usefull on mobile if no other console is available
-     *
+     * @param logObjects
+     * @param logObjectsLength
+     * @param logFontColor
+     * @param logBackgroundColor
      */
     var htmlLog = function (logObjects, logObjectsLength, logFontColor, logBackgroundColor) {
         // TODO: fix: seems that if logging starts before "domload" some
@@ -424,10 +440,10 @@
     };
 
     /**
-     *
-     * file log
      * nodejs logging to file
-     *
+     * @param logObjects
+     * @param logObjectsLength
+     * @param logFontColor
      */
     var fileLog = function (logObjects, logObjectsLength, logFontColor) {
         console.log(logObjects);
@@ -439,9 +455,8 @@
     var defaultLogFontColor = 'default';
     var defaultLogBackgroundColor = 'default';
     /**
-     *
      * log messages
-     *
+     * @param args
      */
     var log = function () {
         var args = [];
@@ -505,9 +520,9 @@
         }
     };
     /**
-     *
      * get the client side (browser) colors
-     *
+     * @param logFontColor
+     * @param logBackgroundColor
      */
     var getClientColors = function (logFontColor, logBackgroundColor) {
         var colors = {
@@ -551,9 +566,9 @@
         return { font: fontColor, background: backgroundColor };
     };
     /**
-     *
      * get the colors for the backend (server) console
-     *
+     * @param logFontColor
+     * @param logBackgroundColor
      */
     var getServerColors = function (logFontColor, logBackgroundColor) {
         var backgroundColors = {
@@ -607,10 +622,9 @@
         return { font: fontColor, background: backgroundColor, reset: '\u001b[0m' };
     };
     /**
-     *
      * handle log arguments
      * extract the color infos from the arguments to log
-     *
+     * @param logArguments
      */
     var handleLogArguments = function (logArguments) {
         var logObjects = [];
@@ -646,6 +660,17 @@
         return new Promise(function (resolve) { return setTimeout(resolve, ms); });
     };
 
+    /**
+     * returns a random integer that lies between min (included) and max (included)
+     * @param min
+     * @param max
+     */
+    var randomInteger = function (min, max) {
+        if (min === void 0) { min = 0; }
+        if (max === void 0) { max = Infinity; }
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    };
+
     var version = '1.0.0';
 
     exports.capitaliseFirstLetter = capitaliseFirstLetter;
@@ -664,6 +689,7 @@
     exports.isClient = isClient;
     exports.isServer = isServer;
     exports.log = log;
+    exports.randomInteger = randomInteger;
     exports.remove = remove;
     exports.removeElements = removeElements;
     exports.replacePlaceholders = replacePlaceholders;

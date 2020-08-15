@@ -1,9 +1,8 @@
 /**
- *
- * array related functions
- *
+ * finds "removeMe" and removes it from the array
+ * @param array 
+ * @param removeMe 
  */
-
 const remove = (array: string[], removeMe: string): void => {
 
     const index = array.indexOf(removeMe);
@@ -14,6 +13,10 @@ const remove = (array: string[], removeMe: string): void => {
 
 };
 
+/**
+ * is array with polyfill for older browsers
+ * @param input 
+ */
 const isArray = (input: unknown): boolean => {
 
     // MDN is array documentation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray
@@ -33,7 +36,13 @@ declare global  {
     }
 }
 
-const includes = (inputArray: [], valueToFind: string, fromIndex?: number): boolean => {
+/**
+ * finds "toFind" in an array, starting at an optional index
+ * @param inputArray 
+ * @param toFind 
+ * @param fromIndex 
+ */
+const includes = (inputArray: [], toFind: string, fromIndex?: number): boolean => {
 
     // MDN includes documentation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
 
@@ -71,7 +80,7 @@ const includes = (inputArray: [], valueToFind: string, fromIndex?: number): bool
         while (k < len) {
             // a. Let elementK be the result of ? Get(O, ! ToString(k))
             // b. If SameValueZero(valueToFind, elementK) is true, return true
-            if (sameValueZero(o[k], valueToFind)) {
+            if (sameValueZero(o[k], toFind)) {
                 return true;
             }
             // c. Increase k by 1
@@ -82,7 +91,7 @@ const includes = (inputArray: [], valueToFind: string, fromIndex?: number): bool
         return false;
     } else {
         const n = fromIndex | 0;
-        return inputArray.includes(valueToFind, n);
+        return inputArray.includes(toFind, n);
     }
 };
 
@@ -90,6 +99,12 @@ const sameValueZero = (x: unknown, y: unknown): boolean => {
     return x === y || (typeof x === 'number' && typeof y === 'number' && isNaN(x) && isNaN(y));
 };
 
+/**
+ * 
+ * @param inputArray 
+ * @param predicate 
+ * @param args 
+ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
 const find = (inputArray: [], predicate: (this: void, value: never, index: number, obj: never[]) => value is never, args?: any): never | undefined => {
 
@@ -151,9 +166,9 @@ declare global  {
 }
 
 /**
- *
  * array flat polyfill, if depth is unknow set it to "Infinity"
- *
+ * @param inputArray 
+ * @param depth 
  */
 const flat = (inputArray: [], depth = Infinity): [] => {
 
@@ -167,6 +182,11 @@ const flat = (inputArray: [], depth = Infinity): [] => {
 
 };
 
+/**
+ * flattens a multidimensional array
+ * @param inputArray 
+ * @param depth 
+ */
 const flatten = (inputArray: [], depth = Infinity): [] => {
 
     const flattend: [] = [];

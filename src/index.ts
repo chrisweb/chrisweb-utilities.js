@@ -7,7 +7,8 @@ import { filterAlphaNumericPlus, capitaliseFirstLetter, stringContains, getSubst
 import { generateUUID } from './utilities/uuid';
 import { removeElements } from './utilities/html';
 import { log } from './utilities/log';
-import { sleep } from './utilities/helpers';
+import { sleep } from './utilities/helper';
+import { randomInteger } from './utilities/random';
 
 const version = '1.0.0';
 
@@ -34,5 +35,6 @@ export {
     generateUUID,
     removeElements,
     log,
-    sleep
+    sleep,
+    randomInteger
 };

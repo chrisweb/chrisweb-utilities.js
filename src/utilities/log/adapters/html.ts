@@ -1,11 +1,13 @@
 import { removeElements } from './../../html';
 
 /**
- *
  * html log
  * create a div an insert the messages in div
  * can be usefull on mobile if no other console is available
- *
+ * @param logObjects 
+ * @param logObjectsLength 
+ * @param logFontColor 
+ * @param logBackgroundColor 
  */
 const htmlLog = (logObjects: string[], logObjectsLength: number, logFontColor: string, logBackgroundColor: string): void => {
 
@@ -49,9 +51,10 @@ const htmlLog = (logObjects: string[], logObjectsLength: number, logFontColor: s
 };
 
 /**
- *
  * extracts html elements (and their content) from strings
- *
+ * @param rawText 
+ * @param extendedEscape 
+ * @param myEscapeList 
  */
 const safeUnescape = (rawText: string, extendedEscape = false, myEscapeList: string[]): string => {
 

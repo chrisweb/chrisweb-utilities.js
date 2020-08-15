@@ -1,9 +1,8 @@
 import { decodeUri } from './uri';
 
 /**
- *
  * get url parameters
- *
+ * @param query 
  */
 const getUrlParameters = (query = ''): { [s: string]: string; } => {
 
@@ -46,9 +45,9 @@ const getUrlParameters = (query = ''): { [s: string]: string; } => {
 };
 
 /**
- *
  * URL utility to get a parameter by name from an URL
- *
+ * @param name 
+ * @param url 
  */
 const getUrlParameterByName = (name: string, url: string): string => {
 
@@ -73,11 +72,11 @@ const getUrlParameterByName = (name: string, url: string): string => {
 
 };
 
-
 /**
- *
  * URL utility to replace a given parameter
- *
+ * @param url 
+ * @param paramName 
+ * @param paramValue 
  */
 const replaceUrlParameter = (url: string, paramName: string, paramValue: string|number): string => {
 

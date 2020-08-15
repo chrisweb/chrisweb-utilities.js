@@ -1,7 +1,5 @@
 /**
- *
  * does the script run on the server
- *
  */
 const isServer = (): boolean => {
 
@@ -11,17 +9,15 @@ const isServer = (): boolean => {
         return false;
     }
 
-    };
+};
 
-    /**
-     *
-     * does the script run in a client
-     *
-     */
-    const isClient = (): boolean => {
+/**
+ * does the script run in a client
+ */
+const isClient = (): boolean => {
 
-        return !isServer();
+    return !isServer();
 
-    };
+};
 
 export { isServer, isClient };
