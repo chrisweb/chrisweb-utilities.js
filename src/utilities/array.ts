@@ -3,13 +3,15 @@
  * @param array 
  * @param removeMe 
  */
-const remove = (array: string[], removeMe: string): void => {
+const removeString = (myArray: string[], removeMe: string): string[] => {
 
-    const index = array.indexOf(removeMe);
+    const index = myArray.indexOf(removeMe);
 
     if (index > -1) {
-        array.splice(index, 1);
+        myArray.splice(index, 1);
     }
+
+    return myArray;
 
 };
 
@@ -203,4 +205,4 @@ const flatten = (inputArray: [], depth = Infinity): [] => {
 
 };
 
-export { remove, isArray, includes, find, flat };
+export { removeString, isArray, includes, find, flat };

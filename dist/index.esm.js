@@ -128,17 +128,45 @@ var replaceUrlParameter = function (url, paramName, paramValue) {
     return url + (url.indexOf('?') > 0 ? '&' : '?') + paramName + '=' + paramValue;
 };
 
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+
+function __values(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+}
+
 var _this = undefined;
 /**
  * finds "removeMe" and removes it from the array
  * @param array
  * @param removeMe
  */
-var remove = function (array, removeMe) {
-    var index = array.indexOf(removeMe);
+var removeString = function (myArray, removeMe) {
+    var index = myArray.indexOf(removeMe);
     if (index > -1) {
-        array.splice(index, 1);
+        myArray.splice(index, 1);
     }
+    return myArray;
 };
 /**
  * is array with polyfill for older browsers
@@ -272,16 +300,26 @@ var flat = function (inputArray, depth) {
  * @param depth
  */
 var flatten = function (inputArray, depth) {
+    var e_1, _a;
     if (depth === void 0) { depth = Infinity; }
     var flattend = [];
-    for (var _i = 0, inputArray_1 = inputArray; _i < inputArray_1.length; _i++) {
-        var el = inputArray_1[_i];
-        if (isArray(el) && depth > 0) {
-            flatten(el, depth - 1);
+    try {
+        for (var inputArray_1 = __values(inputArray), inputArray_1_1 = inputArray_1.next(); !inputArray_1_1.done; inputArray_1_1 = inputArray_1.next()) {
+            var el = inputArray_1_1.value;
+            if (isArray(el) && depth > 0) {
+                flatten(el, depth - 1);
+            }
+            else {
+                flattend.push(el);
+            }
         }
-        else {
-            flattend.push(el);
+    }
+    catch (e_1_1) { e_1 = { error: e_1_1 }; }
+    finally {
+        try {
+            if (inputArray_1_1 && !inputArray_1_1.done && (_a = inputArray_1.return)) _a.call(inputArray_1);
         }
+        finally { if (e_1) throw e_1.error; }
     }
     return flattend;
 };
@@ -667,5 +705,5 @@ var randomInteger = function (min, max) {
 
 var version = '1.0.0';
 
-export { capitaliseFirstLetter, decodeUri, encodeUri, filterAlphaNumericPlus, find, flat, generateUUID, getSubstringIndex, getTimestamp, getUrlParameterByName, getUrlParameters, includes, isArray, isClient, isServer, log, randomInteger, remove, removeElements, replacePlaceholders, replaceUrlParameter, sleep, stringContains, version };
+export { capitaliseFirstLetter, decodeUri, encodeUri, filterAlphaNumericPlus, find, flat, generateUUID, getSubstringIndex, getTimestamp, getUrlParameterByName, getUrlParameters, includes, isArray, isClient, isServer, log, randomInteger, removeElements, removeString, replacePlaceholders, replaceUrlParameter, sleep, stringContains, version };
 //# sourceMappingURL=index.esm.js.map

@@ -5,10 +5,11 @@
     "emitDecoratorMetadata": true,
     "module": "es6",
     "moduleResolution": "node",
-    "rootDir": "./",
-    "outDir": "../dist",
-    "inlineSourceMap": true,
-    "declarationDir": "../dist/@types/chrisweb-utilities",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "sourceMap": true,
+    "inlineSourceMap": false,
+    "declarationDir": "./dist/@types/chrisweb-utilities",
     "noImplicitAny": true,
     "noFallthroughCasesInSwitch": true,
     "skipDefaultLibCheck": true,
@@ -21,6 +22,7 @@
     "node_modules",
     "examples",
     "scripts",
-    "dist"
+    "dist",
+    "tests"
   ]
 }
