@@ -708,10 +708,15 @@
         if (max === void 0) { max = Infinity; }
         return Math.floor(Math.random() * (max - min + 1) + min);
     };
+    var choice = function (sequence) {
+        if (sequence === void 0) { sequence = []; }
+        return sequence[Math.floor(Math.random() * sequence.length)];
+    };
 
     var version = '1.0.0';
 
     exports.capitaliseFirstLetter = capitaliseFirstLetter;
+    exports.choice = choice;
     exports.decodeUri = decodeUri;
     exports.encodeUri = encodeUri;
     exports.filterAlphaNumericPlus = filterAlphaNumericPlus;

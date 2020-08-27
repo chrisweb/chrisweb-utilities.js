@@ -4,4 +4,5 @@
  * @param max
  */
 declare const randomInteger: (min?: number, max?: number) => number;
-export { randomInteger };
+declare const choice: (sequence?: unknown[]) => unknown;
+export { randomInteger, choice };

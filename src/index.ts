@@ -8,7 +8,7 @@ import { generateUUID } from './utilities/uuid';
 import { removeElements } from './utilities/html';
 import { log } from './utilities/log';
 import { sleep } from './utilities/helper';
-import { randomInteger } from './utilities/random';
+import { randomInteger, choice } from './utilities/random';
 
 const version = '1.0.0';
 
@@ -36,5 +36,6 @@ export {
     removeElements,
     log,
     sleep,
-    randomInteger
+    randomInteger,
+    choice
 };

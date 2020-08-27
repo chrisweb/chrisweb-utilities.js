@@ -11,6 +11,7 @@
 Javascript utilities belt for very specific tasks.
 
 main goal(s):
+
 * console log wrapper for colored log messages
 * utilities belt: javascript collection of useful functions that are useful for specific situations, so a lot more specific than underscore
 * should work in the browser as well in nodejs
@@ -35,7 +36,7 @@ update npm to latest version
 
 install the dependencies
 
-`npm install`
+`npm i`
 
 to lint the typescript files
 
@@ -48,10 +49,6 @@ run the tests
 to build the distributions (es6 module (esm.js) and the UMD version)
 
 `npm run build`
-
-or by using yarn  
-
-`yarn build`
 
 ## development
 
@@ -79,29 +76,23 @@ installed dependencies:
 
 command to create a basic jest.config.js file:  
 
-`npx ts-jest config:init	yarn ts-jest config:init`
+`npx ts-jest config:init yarn ts-jest config:init`
 
 If you use VSCode, consider using the [vscode jest extension](https://github.com/jest-community/vscode-jest)
 
 Besides reading the official documentation, you can check out this quick [introduction to jest](https://flaviocopes.com/jest/)  blog post
 
-## linting setup notes
-
-	> we plan to deprecate TSLint and focus our efforts instead on improving ESLint’s TypeScript support  
-    
-Their [blog post](https://medium.com/palantir/tslint-in-2019-1a144c2317a9) announcing that [TSLint](https://github.com/palantir/tslint) will be deprecated in 2019 and you should switch to [ESLint](https://github.com/eslint/eslint) when TSLint is officially deprecated  
-
-TSlint will be deprecated [github ticket](https://github.com/palantir/tslint/issues/4534)  
-
 ## features
 
 ### utilities.log
+
 Colored console log messages for the browser and / or nodejs
-```
+
+```javascript
   utilities.log('foo', 'bar', 'fontColor:red', 'backgroundColor:blue');
 ```
 
-**Suppported colors**
+#### Suppported colors
 
 * red
 * green
@@ -112,49 +103,89 @@ Colored console log messages for the browser and / or nodejs
 * white
 * black
 
-**logging in floating html div (client)**
+#### logging in floating html div (client)
+
 If you are on mobile device and wan't to show the messages in a floating div over the page then set logSpecial to true
-```
+
+```javascript
 utilities.logSpecial = true
 ```
 
-**logging in a file (server)**
+#### logging in a file (server)
+
 If want every message to logged in file, then enable logSpecial (currently only winston is supported)
-```
+
+```javascript
 utilities.logSpecial = true
 ```
 
-**logging in a file (server) but not in the console**
-```
+#### logging in a file (server) but not in the console
+
+```javascript
 utilities.logSpecial = true
 utilities.logVerbose = false
 ```
+
 ### removeElements
+
 removes html elements from a sting (and their content) from strings
 set second parameter "removeTextBetweenTags" to false to keep the text between the opening and closing html tag
+
 ### generateUUID
+
 returns a universally unique identifier
+
 ### filterAlphaNumericPlus
+
 filters a string
 removes everything that is a not an alpha or numeric character and also optionally the characters that got specified as second argument
+
 ### decodeUri
+
 decode uri
+
 ### encodeUri
+
 encode uri
+
 ### arrayRemove
+
 remove an something at an unknown index from an array
+
 ### capitaliseFirstLetter
+
 capitalise first letter of a string
+
 ### getUrlParameters
+
 get url parameters
+
 ### stringContains
+
 does a string contain another string
+
 ### getSubstringIndex
+
 get the index of a substring in a string with optional nth time it occurs
+
 ### isServer
+
 does the script run on the server
+
 ### isClient
+
 does the script run in a client
+
 ### replace placholder(s)
+
 first parameter is a string and second parameter an object where the keys are the placeholder that need to get replaced and the value is the replacement (replacement can be a string or number)
+
 ### remove the content between two "markers"
+
+### randomInteger
+
+Input are two numbers, output is a random number that is between or equal the two input numbers
+
+### choice
+
+Input is a sequence (an array) of items and the output one random item of the input

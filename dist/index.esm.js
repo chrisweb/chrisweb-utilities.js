@@ -702,8 +702,12 @@ var randomInteger = function (min, max) {
     if (max === void 0) { max = Infinity; }
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
+var choice = function (sequence) {
+    if (sequence === void 0) { sequence = []; }
+    return sequence[Math.floor(Math.random() * sequence.length)];
+};
 
 var version = '1.0.0';
 
-export { capitaliseFirstLetter, decodeUri, encodeUri, filterAlphaNumericPlus, find, flat, generateUUID, getSubstringIndex, getTimestamp, getUrlParameterByName, getUrlParameters, includes, isArray, isClient, isServer, log, randomInteger, removeElements, removeString, replacePlaceholders, replaceUrlParameter, sleep, stringContains, version };
+export { capitaliseFirstLetter, choice, decodeUri, encodeUri, filterAlphaNumericPlus, find, flat, generateUUID, getSubstringIndex, getTimestamp, getUrlParameterByName, getUrlParameters, includes, isArray, isClient, isServer, log, randomInteger, removeElements, removeString, replacePlaceholders, replaceUrlParameter, sleep, stringContains, version };
 //# sourceMappingURL=index.esm.js.map

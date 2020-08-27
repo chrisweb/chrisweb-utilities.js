@@ -8,6 +8,6 @@ import { generateUUID } from './utilities/uuid';
 import { removeElements } from './utilities/html';
 import { log } from './utilities/log';
 import { sleep } from './utilities/helper';
-import { randomInteger } from './utilities/random';
+import { randomInteger, choice } from './utilities/random';
 declare const version = "1.0.0";
-export { version, getTimestamp, isServer, isClient, getUrlParameters, getUrlParameterByName, replaceUrlParameter, decodeUri, encodeUri, removeString, isArray, includes, find, flat, filterAlphaNumericPlus, capitaliseFirstLetter, stringContains, getSubstringIndex, replacePlaceholders, generateUUID, removeElements, log, sleep, randomInteger };
+export { version, getTimestamp, isServer, isClient, getUrlParameters, getUrlParameterByName, replaceUrlParameter, decodeUri, encodeUri, removeString, isArray, includes, find, flat, filterAlphaNumericPlus, capitaliseFirstLetter, stringContains, getSubstringIndex, replacePlaceholders, generateUUID, removeElements, log, sleep, randomInteger, choice };
