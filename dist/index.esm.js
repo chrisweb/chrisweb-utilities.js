@@ -400,6 +400,13 @@ var replacePlaceholders = function (input, replacements) {
     }
     return output;
 };
+/**
+ * remove all spaces from a string
+ * @param input
+ */
+var removeAllSpaces = function (input) {
+    return input.replace(/\s/g, '');
+};
 
 /**
  * returns a universally unique identifier
@@ -721,5 +728,5 @@ var choice = function (sequence, prng) {
 
 var version = '1.0.0';
 
-export { capitaliseFirstLetter, choice, decodeUri, encodeUri, filterAlphaNumericPlus, find, flat, generateUUID, getSubstringIndex, getTimestamp, getUrlParameterByName, getUrlParameters, includes, isArray, isClient, isServer, log, randomInteger, removeElements, removeString, replacePlaceholders, replaceUrlParameter, sleep, stringContains, version };
+export { capitaliseFirstLetter, choice, decodeUri, encodeUri, filterAlphaNumericPlus, find, flat, generateUUID, getSubstringIndex, getTimestamp, getUrlParameterByName, getUrlParameters, includes, isArray, isClient, isServer, log, randomInteger, removeAllSpaces, removeElements, removeString, replacePlaceholders, replaceUrlParameter, sleep, stringContains, version };
 //# sourceMappingURL=index.esm.js.map

@@ -406,6 +406,13 @@
         }
         return output;
     };
+    /**
+     * remove all spaces from a string
+     * @param input
+     */
+    var removeAllSpaces = function (input) {
+        return input.replace(/\s/g, '');
+    };
 
     /**
      * returns a universally unique identifier
@@ -745,6 +752,7 @@
     exports.isServer = isServer;
     exports.log = log;
     exports.randomInteger = randomInteger;
+    exports.removeAllSpaces = removeAllSpaces;
     exports.removeElements = removeElements;
     exports.removeString = removeString;
     exports.replacePlaceholders = replacePlaceholders;

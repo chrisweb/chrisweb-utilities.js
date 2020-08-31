@@ -5,7 +5,7 @@
  * @param inputString
  * @param specialCharacters
  */
-declare const filterAlphaNumericPlus: (inputString: string, specialCharacters: string) => string | boolean;
+declare const filterAlphaNumericPlus: (inputString: string, specialCharacters?: string) => string | boolean;
 /**
  * capitalise first letter of a string
  * @param inputString
@@ -30,4 +30,9 @@ declare const getSubstringIndex: (inputString: string, substring: string, nthTim
  * @param replacements
  */
 declare const replacePlaceholders: (input: string, replacements: string) => string;
-export { filterAlphaNumericPlus, capitaliseFirstLetter, stringContains, getSubstringIndex, replacePlaceholders };
+/**
+ * remove all spaces from a string
+ * @param input
+ */
+declare const removeAllSpaces: (input: string) => string;
+export { filterAlphaNumericPlus, capitaliseFirstLetter, stringContains, getSubstringIndex, replacePlaceholders, removeAllSpaces };

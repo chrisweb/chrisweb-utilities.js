@@ -5,7 +5,7 @@
  * @param inputString 
  * @param specialCharacters 
  */
-const filterAlphaNumericPlus = (inputString: string, specialCharacters: string): string|boolean => {
+const filterAlphaNumericPlus = (inputString: string, specialCharacters?: string): string|boolean => {
 
     if (typeof (inputString) === 'string' && inputString.length > 0) {
 
@@ -105,4 +105,12 @@ const replacePlaceholders = (input: string, replacements: string): string => {
 
 };
 
-export { filterAlphaNumericPlus, capitaliseFirstLetter, stringContains, getSubstringIndex, replacePlaceholders };
+/**
+ * remove all spaces from a string
+ * @param input
+ */
+const removeAllSpaces = (input: string): string => {
+    return input.replace(/\s/g,'');
+};
+
+export { filterAlphaNumericPlus, capitaliseFirstLetter, stringContains, getSubstringIndex, replacePlaceholders, removeAllSpaces };
