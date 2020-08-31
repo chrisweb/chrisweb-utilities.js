@@ -703,14 +703,26 @@
      * @param min
      * @param max
      */
-    var randomInteger = function (min, max) {
+    var randomInteger = function (min, max, prng) {
         if (min === void 0) { min = 0; }
         if (max === void 0) { max = Infinity; }
-        return Math.floor(Math.random() * (max - min + 1) + min);
+        // support for custom PRNGs, like https://www.npmjs.com/package/seedrandom
+        if (prng) {
+            prng.floor(prng.random() * (max - min + 1) + min);
+        }
+        else {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
     };
-    var choice = function (sequence) {
+    var choice = function (sequence, prng) {
         if (sequence === void 0) { sequence = []; }
-        return sequence[Math.floor(Math.random() * sequence.length)];
+        // support for custom PRNGs, like https://www.npmjs.com/package/seedrandom
+        if (prng) {
+            return sequence[prng.floor(prng.random() * sequence.length)];
+        }
+        else {
+            return sequence[Math.floor(Math.random() * sequence.length)];
+        }
     };
 
     var version = '1.0.0';
