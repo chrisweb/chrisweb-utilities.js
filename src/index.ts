@@ -10,7 +10,7 @@ import { log } from './utilities/log';
 import { sleep } from './utilities/helper';
 import { randomInteger, choice } from './utilities/random';
 
-const version = '1.3.2';
+const version = '1.4.0';
 
 export {
     version,

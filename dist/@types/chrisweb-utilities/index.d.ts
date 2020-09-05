@@ -9,5 +9,5 @@ import { removeElements } from './utilities/html';
 import { log } from './utilities/log';
 import { sleep } from './utilities/helper';
 import { randomInteger, choice } from './utilities/random';
-declare const version = "1.3.2";
+declare const version = "1.4.0";
 export { version, getTimestamp, isServer, isClient, getUrlParameters, getUrlParameterByName, replaceUrlParameter, decodeUri, encodeUri, removeString, isArray, includes, find, flat, filterAlphaNumericPlus, filterNumericPlus, capitaliseFirstLetter, stringContains, getSubstringIndex, replacePlaceholders, generateUUID, removeElements, log, sleep, randomInteger, choice, removeAllSpaces };

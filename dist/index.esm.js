@@ -747,7 +747,7 @@ var choice = function (sequence, prng) {
     }
 };
 
-var version = '1.3.2';
+var version = '1.4.0';
 
 export { capitaliseFirstLetter, choice, decodeUri, encodeUri, filterAlphaNumericPlus, filterNumericPlus, find, flat, generateUUID, getSubstringIndex, getTimestamp, getUrlParameterByName, getUrlParameters, includes, isArray, isClient, isServer, log, randomInteger, removeAllSpaces, removeElements, removeString, replacePlaceholders, replaceUrlParameter, sleep, stringContains, version };
 //# sourceMappingURL=index.esm.js.map

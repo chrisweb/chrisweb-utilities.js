@@ -753,7 +753,7 @@
         }
     };
 
-    var version = '1.3.2';
+    var version = '1.4.0';
 
     exports.capitaliseFirstLetter = capitaliseFirstLetter;
     exports.choice = choice;
