@@ -1,11 +1,19 @@
 /**
  * filters a string
  * removes everything that is a not an alpha or numeric character, plus
- * the characters if any got specified as second argument
+ * the characters if any that got specified as second argument
  * @param inputString
  * @param specialCharacters
  */
 declare const filterAlphaNumericPlus: (inputString: string, specialCharacters?: string) => string | boolean;
+/**
+ * filters a string
+ * removes everything that is a not a  numeric character, plus
+ * the characters if any that got specified as second argument
+ * @param inputString
+ * @param specialCharacters
+ */
+declare const filterNumericPlus: (inputString: string, specialCharacters?: string) => string | boolean;
 /**
  * capitalise first letter of a string
  * @param inputString
@@ -35,4 +43,4 @@ declare const replacePlaceholders: (input: string, replacements: string) => stri
  * @param input
  */
 declare const removeAllSpaces: (input: string) => string;
-export { filterAlphaNumericPlus, capitaliseFirstLetter, stringContains, getSubstringIndex, replacePlaceholders, removeAllSpaces };
+export { filterAlphaNumericPlus, filterNumericPlus, capitaliseFirstLetter, stringContains, getSubstringIndex, replacePlaceholders, removeAllSpaces };

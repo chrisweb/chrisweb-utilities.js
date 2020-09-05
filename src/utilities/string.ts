@@ -1,7 +1,7 @@
 /**
  * filters a string
  * removes everything that is a not an alpha or numeric character, plus
- * the characters if any got specified as second argument
+ * the characters if any that got specified as second argument
  * @param inputString 
  * @param specialCharacters 
  */
@@ -19,6 +19,37 @@ const filterAlphaNumericPlus = (inputString: string, specialCharacters?: string)
 
         } else {
             outputString = inputString.replace(/[^a-z0-9]/gi, '');
+        }
+
+        return outputString;
+
+    }
+
+    return false;
+
+};
+
+/**
+ * filters a string
+ * removes everything that is a not a  numeric character, plus
+ * the characters if any that got specified as second argument
+ * @param inputString 
+ * @param specialCharacters 
+ */
+const filterNumericPlus = (inputString: string, specialCharacters?: string): string|boolean => {
+
+    if (typeof (inputString) === 'string' && inputString.length > 0) {
+
+        let outputString;
+
+        if (specialCharacters !== undefined) {
+
+            const regex = RegExp('[^0-9' + specialCharacters + ']', 'gi');
+
+            outputString = inputString.replace(regex, '');
+
+        } else {
+            outputString = inputString.replace(/[^0-9]/gi, '');
         }
 
         return outputString;
@@ -113,4 +144,4 @@ const removeAllSpaces = (input: string): string => {
     return input.replace(/\s/g,'');
 };
 
-export { filterAlphaNumericPlus, capitaliseFirstLetter, stringContains, getSubstringIndex, replacePlaceholders, removeAllSpaces };
+export { filterAlphaNumericPlus, filterNumericPlus, capitaliseFirstLetter, stringContains, getSubstringIndex, replacePlaceholders, removeAllSpaces };

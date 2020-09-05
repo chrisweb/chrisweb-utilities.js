@@ -333,7 +333,7 @@
     /**
      * filters a string
      * removes everything that is a not an alpha or numeric character, plus
-     * the characters if any got specified as second argument
+     * the characters if any that got specified as second argument
      * @param inputString
      * @param specialCharacters
      */
@@ -346,6 +346,27 @@
             }
             else {
                 outputString = inputString.replace(/[^a-z0-9]/gi, '');
+            }
+            return outputString;
+        }
+        return false;
+    };
+    /**
+     * filters a string
+     * removes everything that is a not a  numeric character, plus
+     * the characters if any that got specified as second argument
+     * @param inputString
+     * @param specialCharacters
+     */
+    var filterNumericPlus = function (inputString, specialCharacters) {
+        if (typeof (inputString) === 'string' && inputString.length > 0) {
+            var outputString = void 0;
+            if (specialCharacters !== undefined) {
+                var regex = RegExp('[^0-9' + specialCharacters + ']', 'gi');
+                outputString = inputString.replace(regex, '');
+            }
+            else {
+                outputString = inputString.replace(/[^0-9]/gi, '');
             }
             return outputString;
         }
@@ -732,13 +753,14 @@
         }
     };
 
-    var version = '1.0.0';
+    var version = '1.3.2';
 
     exports.capitaliseFirstLetter = capitaliseFirstLetter;
     exports.choice = choice;
     exports.decodeUri = decodeUri;
     exports.encodeUri = encodeUri;
     exports.filterAlphaNumericPlus = filterAlphaNumericPlus;
+    exports.filterNumericPlus = filterNumericPlus;
     exports.find = find;
     exports.flat = flat;
     exports.generateUUID = generateUUID;

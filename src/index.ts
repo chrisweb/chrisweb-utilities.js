@@ -3,7 +3,7 @@ import { isServer, isClient } from './utilities/platform';
 import { getUrlParameters, getUrlParameterByName, replaceUrlParameter } from './utilities/url';
 import { decodeUri, encodeUri } from './utilities/uri';
 import { removeString, isArray, includes, find, flat } from './utilities/array';
-import { filterAlphaNumericPlus, capitaliseFirstLetter, stringContains, getSubstringIndex, replacePlaceholders, removeAllSpaces } from './utilities/string';
+import { filterAlphaNumericPlus, filterNumericPlus, capitaliseFirstLetter, stringContains, getSubstringIndex, replacePlaceholders, removeAllSpaces } from './utilities/string';
 import { generateUUID } from './utilities/uuid';
 import { removeElements } from './utilities/html';
 import { log } from './utilities/log';
@@ -28,6 +28,7 @@ export {
     find,
     flat,
     filterAlphaNumericPlus,
+    filterNumericPlus,
     capitaliseFirstLetter,
     stringContains,
     getSubstringIndex,

@@ -327,7 +327,7 @@ var flatten = function (inputArray, depth) {
 /**
  * filters a string
  * removes everything that is a not an alpha or numeric character, plus
- * the characters if any got specified as second argument
+ * the characters if any that got specified as second argument
  * @param inputString
  * @param specialCharacters
  */
@@ -340,6 +340,27 @@ var filterAlphaNumericPlus = function (inputString, specialCharacters) {
         }
         else {
             outputString = inputString.replace(/[^a-z0-9]/gi, '');
+        }
+        return outputString;
+    }
+    return false;
+};
+/**
+ * filters a string
+ * removes everything that is a not a  numeric character, plus
+ * the characters if any that got specified as second argument
+ * @param inputString
+ * @param specialCharacters
+ */
+var filterNumericPlus = function (inputString, specialCharacters) {
+    if (typeof (inputString) === 'string' && inputString.length > 0) {
+        var outputString = void 0;
+        if (specialCharacters !== undefined) {
+            var regex = RegExp('[^0-9' + specialCharacters + ']', 'gi');
+            outputString = inputString.replace(regex, '');
+        }
+        else {
+            outputString = inputString.replace(/[^0-9]/gi, '');
         }
         return outputString;
     }
@@ -726,7 +747,7 @@ var choice = function (sequence, prng) {
     }
 };
 
-var version = '1.0.0';
+var version = '1.3.2';
 
-export { capitaliseFirstLetter, choice, decodeUri, encodeUri, filterAlphaNumericPlus, find, flat, generateUUID, getSubstringIndex, getTimestamp, getUrlParameterByName, getUrlParameters, includes, isArray, isClient, isServer, log, randomInteger, removeAllSpaces, removeElements, removeString, replacePlaceholders, replaceUrlParameter, sleep, stringContains, version };
+export { capitaliseFirstLetter, choice, decodeUri, encodeUri, filterAlphaNumericPlus, filterNumericPlus, find, flat, generateUUID, getSubstringIndex, getTimestamp, getUrlParameterByName, getUrlParameters, includes, isArray, isClient, isServer, log, randomInteger, removeAllSpaces, removeElements, removeString, replacePlaceholders, replaceUrlParameter, sleep, stringContains, version };
 //# sourceMappingURL=index.esm.js.map
