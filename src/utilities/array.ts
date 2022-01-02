@@ -17,7 +17,7 @@ const removeString = (myArray: string[], removeMe: string): string[] => {
 
 /**
  * is array with polyfill for older browsers
- * @param input 
+ * @param input
  */
 const isArray = (input: unknown): boolean => {
 
