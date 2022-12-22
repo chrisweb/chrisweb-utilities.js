@@ -1,5 +1,3 @@
-[![Dependencies](https://david-dm.org/chrisweb/chrisweb-utilities.js/status.svg)](https://david-dm.org/chrisweb/chrisweb-utilities.js)
-[![DevDependencies](https://david-dm.org/chrisweb/chrisweb-utilities.js/dev-status.svg)](https://david-dm.org/chrisweb/chrisweb-utilities.js)
 [![GitHub release](https://img.shields.io/github/release/chrisweb/chrisweb-utilities.js.svg)](https://github.com/chrisweb/chrisweb-utilities.js/releases)
 [![GitHub file size in bytes](https://img.shields.io/github/size/chrisweb/chrisweb-utilities.js/dist/index.esm.js.svg)](https://github.com/chrisweb/chrisweb-utilities.js)
 [![Module formats](https://img.shields.io/badge/module%20formats-ESM%20+%20UMD-green.svg)](https://github.com/chrisweb/chrisweb-utilities.js/tree/master/dist)
@@ -7,6 +5,12 @@
 [![issues / PRs](https://img.shields.io/badge/issues%20/%20PRs-welcome-green.svg)](https://github.com/chrisweb/chrisweb-utilities.js/issues/new/choose)
 
 # chrisweb utilities.js
+
+## ARCHIVED !!!
+
+This project is now archived, I will not update / maintain it anymore
+
+## What is it?
 
 Javascript utilities belt for very specific tasks.
 
